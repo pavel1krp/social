@@ -1,7 +1,19 @@
 .nav{
     background-color: tan;
     grid-area: n;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    padding: 20px 0 0 0;
 }
 .item{
     color: black;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.item a.activeLink{
+    color: gold;
 }

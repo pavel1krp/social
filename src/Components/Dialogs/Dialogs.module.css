@@ -1,3 +1,14 @@
-/*.content{*/
-/*    background-color: brown;*/
-/*}*/
+.content{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    gap: 50px;
+}
+.dialogs{
+    padding: 10px;
+}
+.dialogs .active{
+    color: gold;
+}
+.messages{
+    padding: 10px;
+}

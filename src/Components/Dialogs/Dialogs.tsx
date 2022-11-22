@@ -1,46 +1,68 @@
 import React from 'react';
 import s from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
+import {message} from "antd";
 
-const DialogItem = (props: string) =>{
+type DialogItemPropsType ={
+    name: string,
+    id: number
+}
+
+const DialogItem = (props: DialogItemPropsType) =>{
     return (
         <div className={s.dialogsItem + ' ' + s.active} >
-            <NavLink to='/dialogs/1'>Pasha</NavLink>
+            <NavLink key={props.id} to={'/dialogs/' + props.id}>{props.name}</NavLink>
         </div>
     )
 }
 
+type MessageType = {
+    message: string,
+}
+
+const Message = (props: MessageType) =>{
+    return <div
+        className={s.message}>{props.message}
+    </div>
+}
+
 const Dialogs = (props: any) => {
+
+    let dialogsData =[
+        {id:1, name:'Pasha'},
+        {id:2, name:'Dasha'},
+        {id:3, name:'Sasha'},
+        {id:4, name:'Masha'},
+        {id:5, name:'Nasha'},
+        {id:6, name:'Glasha'},
+        {id:7, name:'Gosha'},
+    ]
+
+    let messagesData = [
+        {id:1, message: 'Hi'},
+        {id:2, message: 'Hi chel'},
+        {id:3, message: 'Hi body'},
+        {id:4, message: 'Hi bye'},
+        {id:5, message: 'Hiushki'},
+        {id:6, message: 'Bye'},
+    ]
+
     return (
         <div className ={s.content}>
             <div className={s.dialogs}>
-                <DialogItem name ="Pasha" id ="1"/>
-                <div className={s.dialogsItem}>
-                    <NavLink to='/dialogs/2'>Dasha</NavLink>
-                </div>
-                <div className={s.dialogsItem}>
-                    <NavLink to='/dialogs/3'>Sasha</NavLink>
-                </div>
-                <div className={s.dialogsItem}>
-                    <NavLink to='/dialogs/4'>Masha</NavLink>
-                </div>
-                <div className={s.dialogsItem}>
-                    <NavLink to='/dialogs/5'>Nyasha</NavLink>
-                </div>
-                <div className={s.dialogsItem}>
-                    <NavLink to='/dialogs/6'>Glasha</NavLink>
-                </div>
-                <div className={s.dialogsItem}>
-                    <NavLink to='/dialogs/7'>Kasha</NavLink>
-                </div>
-                <div className={s.dialogsItem}>
-                    <NavLink to='/dialogs/8'>Susha</NavLink>
-                </div>
+                <DialogItem name ={dialogsData[0].name} id = {dialogsData[0].id}/>
+                <DialogItem name ={dialogsData[1].name} id = {dialogsData[0].id}/>
+                <DialogItem name ="Sasha" id = {3}/>
+                <DialogItem name ="Masha" id = {4}/>
+                <DialogItem name ="Nyasha" id = {5}/>
+                <DialogItem name ="Glasha" id = {6}/>
+                <DialogItem name ="Gosha" id = {7}/>
             </div>
             <div className={s.messages}>
-                <div className={s.message}>Hi</div>
-                <div className={s.message}>Bye</div>
-                <div className={s.message}>ni</div>
+                <Message message={'Hi'}/>
+                <Message message={'Hi1'}/>
+                <Message message={'Hi2'}/>
+                <Message message={messagesData[0].message}/>
             </div>
         </div>
     );

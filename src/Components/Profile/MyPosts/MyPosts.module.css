@@ -4,3 +4,6 @@
 .item.active{
     color: green;
 }
+.postsBlock{
+    padding: 10px;
+}

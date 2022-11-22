@@ -50,18 +50,12 @@ const Dialogs = (props: any) => {
     return (
         <div className ={s.content}>
             <div className={s.dialogs}>
-                {messagesData.map(el => {
-                    return (
-                        <DialogItem name={el.message} id={el.id}/>
-                    )
-                })}
+                {dialogsData.map(el => <DialogItem name={el.name} id={el.id}/>
+                )}
             </div>
             <div className={s.messages}>
-                {messagesData.map(el=>{
-                    return(
-                        <Message message={el.message}/>
-                    )
-                })}
+                {messagesData.map(el=> <Message message={el.message}/>
+                )}
             </div>
         </div>
     );

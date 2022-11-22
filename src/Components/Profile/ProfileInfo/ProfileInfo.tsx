@@ -11,7 +11,10 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         <div>
             <div>
                 <img className={s.profile_ava} src={props.src} alt={props.alt}/>
-                <div className={s.description_block}>ava+ description</div>
+                <div className={s.description_block}>
+                    <img className={s.myAva} src="https://klike.net/uploads/posts/2019-03/1551511862_19.jpg" alt="eto ya"/>
+                    <p>V golove moei opilki- ne beda!</p>
+                </div>
             </div>
         </div>
     );

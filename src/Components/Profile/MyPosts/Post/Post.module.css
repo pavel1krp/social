@@ -9,4 +9,16 @@
 .divan{
     display: flex;
     margin-top: 10px;
+    flex-direction: column;
+}
+.comentAndAva{
+    display: flex;
+    gap: 20px ;
+}
+.likesAndComent{
+    display: flex;
+    gap: 20px;
+}
+.likes{
+    color: crimson;
 }

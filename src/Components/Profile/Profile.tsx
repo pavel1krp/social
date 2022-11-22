@@ -6,7 +6,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 const Profile = () => {
     return (
         <div >
-            <ProfileInfo  src={'https://oir.mobi/uploads/posts/2021-03/1616990293_11-p-fon-dlya-risovaniya-12.jpg'} alt={'Ava'}/>
+            <ProfileInfo  src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnMBNcEe_EGXuh-UuvXVFkcXaDoqFS2TAbwQ&usqp=CAU'} alt={'Ava'}/>
             <MyPosts />
         </div>
     );

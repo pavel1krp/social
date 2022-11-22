@@ -50,19 +50,18 @@ const Dialogs = (props: any) => {
     return (
         <div className ={s.content}>
             <div className={s.dialogs}>
-                <DialogItem name ={dialogsData[0].name} id = {dialogsData[0].id}/>
-                <DialogItem name ={dialogsData[1].name} id = {dialogsData[0].id}/>
-                <DialogItem name ="Sasha" id = {3}/>
-                <DialogItem name ="Masha" id = {4}/>
-                <DialogItem name ="Nyasha" id = {5}/>
-                <DialogItem name ="Glasha" id = {6}/>
-                <DialogItem name ="Gosha" id = {7}/>
+                {messagesData.map(el => {
+                    return (
+                        <DialogItem name={el.message} id={el.id}/>
+                    )
+                })}
             </div>
             <div className={s.messages}>
-                <Message message={'Hi'}/>
-                <Message message={'Hi1'}/>
-                <Message message={'Hi2'}/>
-                <Message message={messagesData[0].message}/>
+                {messagesData.map(el=>{
+                    return(
+                        <Message message={el.message}/>
+                    )
+                })}
             </div>
         </div>
     );

@@ -1,30 +1,7 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
-import {message} from "antd";
-
-type DialogItemPropsType ={
-    name: string,
-    id: number
-}
-
-const DialogItem = (props: DialogItemPropsType) =>{
-    return (
-        <div className={s.dialogsItem + ' ' + s.active} >
-            <NavLink key={props.id} to={'/dialogs/' + props.id}>{props.name}</NavLink>
-        </div>
-    )
-}
-
-type MessageType = {
-    message: string,
-}
-
-const Message = (props: MessageType) =>{
-    return <div
-        className={s.message}>{props.message}
-    </div>
-}
+import Message from "./Message/Message";
+import DialogItem from "./DialogItem/DialogItem";
 
 const Dialogs = (props: any) => {
 
@@ -50,12 +27,10 @@ const Dialogs = (props: any) => {
     return (
         <div className ={s.content}>
             <div className={s.dialogs}>
-                {dialogsData.map(el => <DialogItem name={el.name} id={el.id}/>
-                )}
+                {dialogsData.map(el => <DialogItem name={el.name} id={el.id}/>)}
             </div>
             <div className={s.messages}>
-                {messagesData.map(el=> <Message message={el.message}/>
-                )}
+                {messagesData.map(el=> <Message message={el.message}/>)}
             </div>
         </div>
     );

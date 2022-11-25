@@ -7,11 +7,6 @@ type PostType ={
     text:string,
     likesCount:number
 }
- // const users = [
- //     {src:'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg', title: 'Vasya', likesCount:14},
- //     {src:'https://klike.net/uploads/posts/2019-03/1551511804_3.jpg', title: 'Vasyanchi',likesCount:15},
- //     {src:'https://klike.net/uploads/posts/2019-03/1551511804_3.jpg', title: 'Sasya',likesCount:17},
- // ]
 const Post = (props:PostType) => {
     return (
         <div className={s.divan}>

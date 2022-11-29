@@ -9,40 +9,63 @@ import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import News from "./Components/News/News";
 
-export type MessagesDataType ={
-    id:string
-    message:string
+export type MessagesDataType = {
+    id: string
+    message: string
 }
 export type DialogDataType = {
-    id:string
-    name:string
+    id: string
+    name: string
 }
 export type postDatapropsType = {
-    id:string
-    message:string
+    id: string
+    message: string
     name: string
-    likesCount:number
+    likesCount: number
     src: string
 }
 
-type PropsType = {
-    post: postDatapropsType[]
+type ProfilePageType = {
+    postData: postDatapropsType[]
+}
+
+type DialogPageType = {
     dialogsData:DialogDataType[]
     messagesData:MessagesDataType[]
 }
-const App = (props:PropsType) => {
 
+type StatePropsType = {
+    ProfilePage: ProfilePageType
+        DialogPage: DialogPageType
+}
+
+type AppPropsType = {
+    state: StatePropsType
+    addPost: (post:string)=>void
+}
+
+
+const App = (props: AppPropsType) => {
+    const addPostCallback = (post:string)=>{
+        props.addPost(post)
+    }
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Nav/>
                 <div className='app-wrapper-content'>
-                  <Route render={()=><Profile post ={props.post}/>}  path={'/profile'}/>
-                  <Route render={()=><Dialogs dialogsData ={props.dialogsData} messagesData ={props.messagesData}/>}  path={'/dialogs'}/>
-                  <Route render={()=><News/>} path={'/news'}/>
-                  <Route render={()=><Music/>} path={'/music'}/>
-                  <Route render={()=><Settings/>} path={'/setting'}/>
+                    <Route render={() => <Profile
+                        post={props.state.ProfilePage.postData} addPost={addPostCallback}/>} path={'/profile'} />
+                    <Route render={() => <Dialogs
+                        dialogState={props.state.DialogPage}/>}
+                           path={'/dialogs'}/>
+                    <Route render={() => <News/>}
+                           path={'/news'}/>
+                    <Route render={() => <Music/>}
+                           path={'/music'}/>
+                    <Route render={() => <Settings/>}
+                           path={'/setting'}/>
                 </div>
             </div>
         </BrowserRouter>

@@ -3,9 +3,11 @@ import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import { ProfileProps} from "../Profile";
 import {postDatapropsType} from "../../../App";
+import InputButton from "../../Form/Input_Button";
 
 type MyPostType ={
     post: Array<postDatapropsType>
+    addPost:(post:string) =>void
 }
 
 const MyPosts = (props:MyPostType) => {
@@ -15,6 +17,10 @@ const MyPosts = (props:MyPostType) => {
             <Post title={el.name} src={el.src} text={el.message} likesCount={el.likesCount}/>
         )
     })
+    let newPostElement = React.createRef<HTMLTextAreaElement>()
+    const  addPostHandler = ()=>{
+        props.addPost(newPostElement.current? newPostElement.current.value:'')
+    }
     return (
         <div className={s.postsBlock}>
             <div className={`${s.item}`}>
@@ -22,12 +28,12 @@ const MyPosts = (props:MyPostType) => {
             </div>
             <div className={s.item}>
                 <div>
-                    <textarea className={s.textArea} ></textarea>
+                    <textarea ref={newPostElement} className={s.textArea} ></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={addPostHandler}>Add post</button>
                 </div>
-
+                {/*<InputButton buttonName={'Send message'}/>*/}
             </div>
             {posts}
         </div>

@@ -3,16 +3,22 @@ import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import {DialogDataType, MessagesDataType, postDatapropsType} from "../../App";
+import InputButton from "../Form/Input_Button";
+
+type allDialogTypes ={
+    dialogsData: DialogDataType[]
+    messagesData:MessagesDataType[]
+}
 
 type DialogPropsType ={
-    dialogsData: DialogDataType[]
-        messagesData:MessagesDataType[]
+    dialogState: allDialogTypes
 }
 
 const Dialogs = (props:DialogPropsType) => {
-    const mapMessages = props.messagesData.map(el=> <Message message={el.message}/>)
-    const mapDialogs = props.dialogsData.map(el => <DialogItem name={el.name} id={el.id}/>)
+    const mapMessages = props.dialogState.messagesData.map(el=> <Message message={el.message}/>)
+    const mapDialogs = props.dialogState.dialogsData.map(el => <DialogItem name={el.name} id={el.id}/>)
     return (
+        <>
         <div className ={s.content}>
             <div className={s.dialogs}>
                 {mapDialogs}
@@ -21,6 +27,8 @@ const Dialogs = (props:DialogPropsType) => {
                 {mapMessages}
             </div>
         </div>
+            <InputButton buttonName={'Send message'}/>
+        </>
     );
 };
 

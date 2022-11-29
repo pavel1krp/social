@@ -1,4 +1,30 @@
 import {v1} from "uuid";
+import profile, {ProfileProps} from "../Components/Profile/Profile";
+import { MessagesDataType} from "../App";
+import {rerenderEntireTree} from "../render";
+export type postDatapropsType = {
+    id: string
+    message: string
+    name: string
+    likesCount: number
+    src: string
+}
+export type DialogPageType = {
+    dialogsData:DialogDataType[]
+    messagesData:MessagesDataType[]
+}
+export type DialogDataType = {
+    id: string
+    name: string
+}
+
+export type ProfilePageType = {
+    postData: postDatapropsType[]
+}
+export type StatePropsType = {
+    ProfilePage: ProfilePageType
+    DialogPage: DialogPageType
+}
 
 export let state = {
     ProfilePage: {
@@ -62,4 +88,5 @@ export const addPost = (post:string)=>{
         src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'}
     state.ProfilePage.postData.push(newPost)
     console.dir(state.ProfilePage.postData)
+    rerenderEntireTree(state)
 }

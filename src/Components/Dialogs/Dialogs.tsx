@@ -2,8 +2,9 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import {DialogDataType, MessagesDataType, postDatapropsType} from "../../App";
+import {MessagesDataType} from "../../App";
 import InputButton from "../Form/Input_Button";
+import {DialogDataType} from "../../Redux/State";
 
 type allDialogTypes ={
     dialogsData: DialogDataType[]

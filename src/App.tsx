@@ -8,36 +8,13 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import News from "./Components/News/News";
+import {DialogPageType, postDatapropsType, StatePropsType} from "./Redux/State";
 
 export type MessagesDataType = {
     id: string
     message: string
 }
-export type DialogDataType = {
-    id: string
-    name: string
-}
-export type postDatapropsType = {
-    id: string
-    message: string
-    name: string
-    likesCount: number
-    src: string
-}
 
-type ProfilePageType = {
-    postData: postDatapropsType[]
-}
-
-type DialogPageType = {
-    dialogsData:DialogDataType[]
-    messagesData:MessagesDataType[]
-}
-
-type StatePropsType = {
-    ProfilePage: ProfilePageType
-        DialogPage: DialogPageType
-}
 
 type AppPropsType = {
     state: StatePropsType

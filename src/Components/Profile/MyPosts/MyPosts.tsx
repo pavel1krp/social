@@ -2,8 +2,8 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import { ProfileProps} from "../Profile";
-import {postDatapropsType} from "../../../App";
 import InputButton from "../../Form/Input_Button";
+import {postDatapropsType} from "../../../Redux/State";
 
 type MyPostType ={
     post: Array<postDatapropsType>

@@ -35,7 +35,7 @@ const MyPosts = (props:MyPostType) => {
             </div>
             <div className={s.item}>
                 <div>
-                    <textarea ref={newPostElement} className={s.textArea} value={props.newPostText} onChange={onPostChange}/>
+                    <textarea ref={newPostElement} className={s.textArea} defaultValue={''} value={props.newPostText} onChange={onPostChange}/>
                 </div>
                 <div>
                     <button onClick={addPostHandler}>Add post</button>

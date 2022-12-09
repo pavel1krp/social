@@ -1,7 +1,5 @@
 import {v1} from "uuid";
-import profile, {ProfileProps} from "../Components/Profile/Profile";
 import { MessagesDataType} from "../App";
-import {rerenderEntireTree} from "../render";
 export type postDatapropsType = {
     id: string
     message: string
@@ -82,19 +80,25 @@ export let state = {
         ]
     }
 }
+let rerenderTree = ()=>{
+    console.log(222)
+}
 export const updateNewPostText =(newText:string)=>{
     state.ProfilePage.newPostText =newText
-    rerenderEntireTree(state)
+    rerenderTree()
 }
 
-export const addPost = (post:string)=>{
+export const addPost = ()=>{
     const newPost ={
         id:v1(),
-        message: post!==null? post: '',
+        message: state.ProfilePage.newPostText,
         name: 'LLLLova',
-        likesCount: 15,
+        likesCount: 0,
         src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'}
     state.ProfilePage.postData.push(newPost)
-    console.dir(state.ProfilePage.postData)
-    rerenderEntireTree(state)
+    state.ProfilePage.newPostText =''
+    rerenderTree()
+}
+export const subscribe = (observer:()=>void)=>{
+    rerenderTree = observer
 }

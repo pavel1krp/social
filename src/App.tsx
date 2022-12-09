@@ -18,14 +18,17 @@ export type MessagesDataType = {
 
 type AppPropsType = {
     state: StatePropsType
-    addPost: (post:string)=>void
+    addPost: ()=>void
     updateNewPostText: (newText:string)=>void
 }
 
 
 const App = (props: AppPropsType) => {
-    const addPostCallback = (post:string)=>{
-        props.addPost(post)
+    // const updateNewMessageCallback = (newMessage:string)=>{
+    //     props.updateNewMessage.
+    // }
+    const addPostCallback = ()=>{
+        props.addPost()
     }
     const updateNewPostCallBack = (newText:string)=>{
         props.updateNewPostText(newText)

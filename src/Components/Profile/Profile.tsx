@@ -11,13 +11,13 @@ export type ProfileProps ={
 }
 type PropsType = {
     post: postDatapropsType[]
-    addPost:(post:string)=>void
+    addPost:()=>void
     newPostText:string
     updateNewPostText: (newText:string)=>void
 }
 const Profile = (props:PropsType) => {
     const addPostCallback =(post:string)=>{
-        props.addPost(post)
+        props.addPost()
     }
     const updateNewPostTextHandler =(newText:string)=>{
         props.updateNewPostText(newText)

@@ -21,14 +21,19 @@ const MyPosts = (props:MyPostType) => {
     const  addPostHandler = ()=>{
         props.addPost(newPostElement.current? newPostElement.current.value:'')
     }
+
+    const onPostChange =()=>{
+
+    }
+
     return (
         <div className={s.postsBlock}>
             <div className={`${s.item}`}>
-                My Posts
+                <h3 className={s.myPost}>My Posts</h3>
             </div>
             <div className={s.item}>
                 <div>
-                    <textarea ref={newPostElement} className={s.textArea} ></textarea>
+                    <textarea ref={newPostElement} className={s.textArea} value={'ttt'} onChange={onPostChange}/>
                 </div>
                 <div>
                     <button onClick={addPostHandler}>Add post</button>

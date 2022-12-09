@@ -33,6 +33,7 @@ const App = (props: AppPropsType) => {
                 <Nav/>
                 <div className='app-wrapper-content'>
                     <Route render={() => <Profile
+                        newPostText={props.state.ProfilePage.newPostText}
                         post={props.state.ProfilePage.postData} addPost={addPostCallback}/>} path={'/profile'} />
                     <Route render={() => <Dialogs
                         dialogState={props.state.DialogPage}/>}

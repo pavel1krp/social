@@ -12,6 +12,7 @@ export type ProfileProps ={
 type PropsType = {
     post: postDatapropsType[]
     addPost:(post:string)=>void
+    newPostText:string
 }
 const Profile = (props:PropsType) => {
     const addPostCallback =(post:string)=>{
@@ -20,7 +21,7 @@ const Profile = (props:PropsType) => {
     return (
         <div >
             <ProfileInfo  src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnMBNcEe_EGXuh-UuvXVFkcXaDoqFS2TAbwQ&usqp=CAU'} alt={'Ava'}/>
-            <MyPosts addPost={addPostCallback} post ={props.post}/>
+            <MyPosts newPostText={props.newPostText} addPost={addPostCallback} post ={props.post}/>
         </div>
     );
 };

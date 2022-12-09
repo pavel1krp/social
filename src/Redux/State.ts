@@ -20,6 +20,7 @@ export type DialogDataType = {
 
 export type ProfilePageType = {
     postData: postDatapropsType[]
+    newPostText:string
 }
 export type StatePropsType = {
     ProfilePage: ProfilePageType
@@ -58,6 +59,7 @@ export let state = {
                 src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'
             },
         ],
+        newPostText:'Hello It'
     }, DialogPage: {
         dialogsData: [
             {id: v1(), name: 'Pasha'},

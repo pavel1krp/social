@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import { ProfileProps} from "../Profile";
@@ -9,6 +9,7 @@ type MyPostType ={
     post: Array<postDatapropsType>
     addPost:(post:string) =>void
     newPostText:string
+    updateNewPostText: (newText:string)=>void
 }
 
 const MyPosts = (props:MyPostType) => {
@@ -23,8 +24,8 @@ const MyPosts = (props:MyPostType) => {
         props.addPost(newPostElement.current? newPostElement.current.value:'')
     }
 
-    const onPostChange =()=>{
-
+    const onPostChange =(e:ChangeEvent<HTMLTextAreaElement>)=>{
+       props.updateNewPostText(e.currentTarget.value)
     }
 
     return (

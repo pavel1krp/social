@@ -13,15 +13,19 @@ type PropsType = {
     post: postDatapropsType[]
     addPost:(post:string)=>void
     newPostText:string
+    updateNewPostText: (newText:string)=>void
 }
 const Profile = (props:PropsType) => {
     const addPostCallback =(post:string)=>{
         props.addPost(post)
     }
+    const updateNewPostTextHandler =(newText:string)=>{
+        props.updateNewPostText(newText)
+    }
     return (
         <div >
             <ProfileInfo  src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnMBNcEe_EGXuh-UuvXVFkcXaDoqFS2TAbwQ&usqp=CAU'} alt={'Ava'}/>
-            <MyPosts newPostText={props.newPostText} addPost={addPostCallback} post ={props.post}/>
+            <MyPosts updateNewPostText={updateNewPostTextHandler} newPostText={props.newPostText} addPost={addPostCallback} post ={props.post}/>
         </div>
     );
 };

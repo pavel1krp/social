@@ -21,11 +21,13 @@ export type DialogDataType = {
 export type ProfilePageType = {
     postData: postDatapropsType[]
     newPostText:string
+
 }
 export type StatePropsType = {
     ProfilePage: ProfilePageType
     DialogPage: DialogPageType
 }
+
 
 export let state = {
     ProfilePage: {
@@ -79,6 +81,10 @@ export let state = {
             {id: v1(), message: 'Bye'},
         ]
     }
+}
+export const updateNewPostText =(newText:string)=>{
+    state.ProfilePage.newPostText =newText
+    rerenderEntireTree(state)
 }
 
 export const addPost = (post:string)=>{

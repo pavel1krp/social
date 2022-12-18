@@ -2,7 +2,7 @@ import React from 'react';
 import s from '../Profile/Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {postDatapropsType} from "../../Redux/State";
+import {ActionsType, postDatapropsType} from "../../Redux/State";
 
 
 
@@ -11,21 +11,20 @@ export type ProfileProps ={
 }
 type PropsType = {
     post: postDatapropsType[]
-    addPost:()=>void
     newPostText:string
-    updateNewPostText: (newText:string)=>void
+    dispatch: (action:ActionsType) => void
 }
 const Profile = (props:PropsType) => {
     const addPostCallback =(post:string)=>{
-        props.addPost()
+        props.dispatch({type: "ADD-POST"})
     }
     const updateNewPostTextHandler =(newText:string)=>{
-        props.updateNewPostText(newText)
+        props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText})
     }
     return (
         <div >
             <ProfileInfo  src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnMBNcEe_EGXuh-UuvXVFkcXaDoqFS2TAbwQ&usqp=CAU'} alt={'Ava'}/>
-            <MyPosts updateNewPostText={updateNewPostTextHandler} newPostText={props.newPostText} addPost={addPostCallback} post ={props.post}/>
+            <MyPosts newPostText={props.newPostText} updateNewPostText={updateNewPostTextHandler} dispatch={props.dispatch} addPost={addPostCallback} post ={props.post}/>
         </div>
     );
 };

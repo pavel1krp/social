@@ -3,13 +3,14 @@ import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import { ProfileProps} from "../Profile";
 import InputButton from "../../Form/Input_Button";
-import {postDatapropsType} from "../../../Redux/State";
+import {ActionsType, addPostActionCreator, onPostChangeActionCreator, postDatapropsType} from "../../../Redux/State";
 
 type MyPostType ={
     post: Array<postDatapropsType>
     addPost:(post:string) =>void
     newPostText:string
     updateNewPostText: (newText:string)=>void
+    dispatch: (action:ActionsType) => void
 }
 
 const MyPosts = (props:MyPostType) => {
@@ -21,11 +22,12 @@ const MyPosts = (props:MyPostType) => {
     })
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     const  addPostHandler = ()=>{
-        props.addPost(newPostElement.current? newPostElement.current.value:'')
+        props.dispatch(addPostActionCreator())
     }
 
     const onPostChange =(e:ChangeEvent<HTMLTextAreaElement>)=>{
-       props.updateNewPostText(e.currentTarget.value)
+      props.dispatch(onPostChangeActionCreator(e.currentTarget.value))
+
     }
 
     return (

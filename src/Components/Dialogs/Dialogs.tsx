@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import {MessagesDataType} from "../../App";
-import InputButton from "../Form/Input_Button";
-import {DialogDataType} from "../../Redux/State";
+
+import {ActionsType, DialogDataType, } from "../../Redux/store";
+import {addMessageActionCreator, updateNewMessageCreator} from "../../Redux/dialogs-reducer.js";
 
 type allDialogTypes = {
     dialogsData: DialogDataType[]
@@ -13,22 +14,20 @@ type allDialogTypes = {
 
 type DialogPropsType = {
     dialogState: allDialogTypes
+    newMessageBody:string
+    dispatch: (action:ActionsType) => void
 }
 
 const Dialogs = (props: DialogPropsType) => {
     const mapMessages = props.dialogState.messagesData.map(el => <Message message={el.message}/>)
     const mapDialogs = props.dialogState.dialogsData.map(el => <DialogItem name={el.name} id={el.id}/>)
+    let newMessageBody = props.newMessageBody
 
-    const addMessageHandler = () => {
-
+    const onSendMessageClick = ()=>{
+        props.dispatch(addMessageActionCreator())
     }
-
-    const newMessageElement = () => {
-
-    }
-
-    const onPostChange = () => {
-
+    const onSendMessageChange = (e:ChangeEvent<HTMLInputElement>)=>{
+        props.dispatch(updateNewMessageCreator(e.currentTarget.value))
     }
     return (
         <>
@@ -41,9 +40,9 @@ const Dialogs = (props: DialogPropsType) => {
                 </div>
             </div>
             <div className={s.formDiv}>
-                    <input ref={newMessageElement} className={s.textArea} defaultValue={''}
-                              onChange={onPostChange}/>
-                <button onClick={addMessageHandler}>Add post</button>
+                    <input  className={s.textArea} value={props.newMessageBody}
+                              onChange={onSendMessageChange}/>
+                <button onClick={onSendMessageClick}>Add post</button>
 
                 {/*<InputButton buttonName={'Send message'}/>*/}
             </div>

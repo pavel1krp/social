@@ -3,7 +3,8 @@ import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import { ProfileProps} from "../Profile";
 import InputButton from "../../Form/Input_Button";
-import {ActionsType, addPostActionCreator, onPostChangeActionCreator, postDatapropsType} from "../../../Redux/State";
+import {ActionsType, postDatapropsType} from "../../../Redux/store";
+import {addPostActionCreator, onPostChangeActionCreator} from "../../../Redux/profile-reducer.js";
 
 type MyPostType ={
     post: Array<postDatapropsType>

@@ -1,5 +1,7 @@
 import {v1} from "uuid";
 import {MessagesDataType} from "../App";
+import {profileReducer} from "./profile-reducer.js";
+import {dialogReducer} from "./dialogs-reducer.js";
 
 export type postDatapropsType = {
     id: string
@@ -11,6 +13,7 @@ export type postDatapropsType = {
 export type DialogPageType = {
     dialogsData: DialogDataType[]
     messagesData: MessagesDataType[]
+    newMessageBody:string
 }
 export type DialogDataType = {
     id: string
@@ -42,7 +45,7 @@ export type AddMessageActionType = {
 
 export type ChangeNewMessageActionType = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
-    newMessage: string
+    body: string
 }
 
 
@@ -57,16 +60,18 @@ export type StoreType = {
 
 export type ActionsType = AddPOstActionType | ChangeNewTextActionType|AddMessageActionType| ChangeNewMessageActionType
 
-const ADD_POSt = "ADD-POST"
-const UPDATE_NEW_POST_TEXT ="UPDATE-NEW-POST-TEXT"
+// const ADD_POSt = "ADD-POST";
+// const UPDATE_NEW_POST_TEXT ="UPDATE-NEW-POST-TEXT";
+// const ADD_MESSAGE = 'ADD-MESSAGE';
+// const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
-let store: StoreType = {
+const store: StoreType = {
     _state: {
         ProfilePage: {
             postData: [
                 {
                     id: v1(),
-                    message: 'Игорь,спасибо,вкусно',
+                    message: 'VKus',
                     name: 'Dasha',
                     likesCount: 11111,
                     src: 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg'
@@ -96,7 +101,8 @@ let store: StoreType = {
             ],
             newPostText: 'Hello It',
 
-        }, DialogPage: {
+        },
+        DialogPage: {
             dialogsData: [
                 {id: v1(), name: 'Pasha'},
                 {id: v1(), name: 'Dasha'},
@@ -113,11 +119,11 @@ let store: StoreType = {
                 {id: v1(), message: 'Hi bye'},
                 {id: v1(), message: 'Hiushki'},
                 {id: v1(), message: 'Bye'},
-            ]
+            ],
+            newMessageBody: '',
         }
     },
     _rerenderTree() {
-        console.log(222)
     },
     subscribe(observer: () => void) {
         this._rerenderTree = observer
@@ -126,39 +132,13 @@ let store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            let newPost = {
-                id: v1(),
-                message: this._state.ProfilePage.newPostText,
-                name: 'LLIova',
-                likesCount: 0,
-                src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'
-            }
-            this._state.ProfilePage.postData.push(newPost)
-            this._state.ProfilePage.newPostText = ''
-            this._rerenderTree()
-        }
-        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.ProfilePage.newPostText = action.newText
-            this._rerenderTree()
-        }
-        // else if (action.type === "ADD-MESSAGE") {
-        //     let newMessage = {
-        //         id: v1(),
-        //         message: this._state.DialogPage.messagesData .newPostText,
-        //     }
-        //     this._state.DialogPage.messagesData.push(newMessage)
-        //     this._state.DialogPage.messagesData .newPostText = ''
-        //     this._rerenderTree()
-        // }
-        // else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-        //     this._state.DialogPage.messagesData =action.newMessage
-        //     this._rerenderTree()
-        // }
+        console.log(action.type)
+        this._state.ProfilePage = profileReducer(this._state.ProfilePage,action);
+        this._rerenderTree();
+        this._state.DialogPage= dialogReducer(this._state.DialogPage ,action);
+        this._rerenderTree();
     }
 }
 
-export const addPostActionCreator = ():ActionsType=>({ type:ADD_POSt});
-export const onPostChangeActionCreator = (newText:string):ActionsType=>({type:UPDATE_NEW_POST_TEXT , newText});
 export default store
 

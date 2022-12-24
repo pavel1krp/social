@@ -8,7 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import News from "./Components/News/News";
-import {ActionsType, StatePropsType} from "./Redux/State";
+import {ActionsType, StatePropsType} from "./Redux/store";
 
 export type MessagesDataType = {
     id: string
@@ -41,8 +41,8 @@ const App = (props: AppPropsType) => {
                     <Route render={() => <Profile
                         newPostText={props.state.ProfilePage.newPostText} dispatch={props.dispatch}
                         post={props.state.ProfilePage.postData} />} path={'/profile'}/>
-                    <Route render={() => <Dialogs
-                        dialogState={props.state.DialogPage}/>}
+                    <Route render={() => <Dialogs newMessageBody={props.state.DialogPage.newMessageBody}
+                        dialogState={props.state.DialogPage} dispatch={props.dispatch}/>}
                            path={'/dialogs'}/>
                     <Route render={() => <News/>}
                            path={'/news'}/>

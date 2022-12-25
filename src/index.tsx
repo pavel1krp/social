@@ -4,4 +4,4 @@ import {addPost, state, StatePropsType} from "./Redux/State";
 import {rerenderEntireTree} from "./render";
 
 
-rerenderEntireTree(state)
+rerenderEntireTree (state)

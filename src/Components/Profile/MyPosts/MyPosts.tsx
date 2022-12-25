@@ -1,8 +1,6 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import { ProfileProps} from "../Profile";
-import InputButton from "../../Form/Input_Button";
 import {postDatapropsType} from "../../../Redux/State";
 
 type MyPostType ={
@@ -19,7 +17,10 @@ const MyPosts = (props:MyPostType) => {
     })
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     const  addPostHandler = ()=>{
-        props.addPost(newPostElement.current? newPostElement.current.value:'')
+        props.addPost(newPostElement.current? newPostElement.current.value : '')
+       if(newPostElement.current){
+           newPostElement.current.value = ''
+       }
     }
     return (
         <div className={s.postsBlock}>

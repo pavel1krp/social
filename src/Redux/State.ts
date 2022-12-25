@@ -1,5 +1,4 @@
 import {v1} from "uuid";
-import profile, {ProfileProps} from "../Components/Profile/Profile";
 import { MessagesDataType} from "../App";
 import {rerenderEntireTree} from "../render";
 export type postDatapropsType = {
@@ -58,7 +57,8 @@ export let state = {
                 src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'
             },
         ],
-    }, DialogPage: {
+    },
+    DialogPage: {
         dialogsData: [
             {id: v1(), name: 'Pasha'},
             {id: v1(), name: 'Dasha'},

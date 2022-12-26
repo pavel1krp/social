@@ -18,7 +18,8 @@ export type DialogDataType = {
 }
 
 export type ProfilePageType = {
-    postData: postDatapropsType[]
+    postData: postDatapropsType[],
+    newPostText: string
 }
 export type StatePropsType = {
     ProfilePage: ProfilePageType
@@ -57,6 +58,7 @@ export let state = {
                 src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'
             },
         ],
+        newPostText:'',
     },
     DialogPage: {
         dialogsData: [
@@ -79,14 +81,18 @@ export let state = {
     }
 }
 
-export const addPost = (post:string)=>{
+export const addPost = ()=>{
     const newPost ={
         id:v1(),
-        message: post!==null? post: '',
+        message: state.ProfilePage.newPostText,
         name: 'LLLLova',
         likesCount: 15,
         src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'}
     state.ProfilePage.postData.push(newPost)
-    console.dir(state.ProfilePage.postData)
+    state.ProfilePage.newPostText =''
+    rerenderEntireTree(state)
+}
+export const updateNewPostText = (newText:string)=>{
+    state.ProfilePage.newPostText =newText
     rerenderEntireTree(state)
 }

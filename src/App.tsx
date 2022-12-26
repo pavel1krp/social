@@ -8,7 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import News from "./Components/News/News";
-import {DialogPageType, postDatapropsType, StatePropsType} from "./Redux/State";
+import {StatePropsType} from "./Redux/State";
 
 export type MessagesDataType = {
     id: string
@@ -19,12 +19,16 @@ export type MessagesDataType = {
 type AppPropsType = {
     state: StatePropsType
     addPost: (post:string)=>void
+    updateNewPostText:(newText:string)=>void
 }
 
 
 const App = (props: AppPropsType) => {
     const addPostCallback = (post:string)=>{
         props.addPost(post)
+    }
+    const updatePostCallback =(newText:string)=>{
+        props.updateNewPostText(newText)
     }
     return (
         <BrowserRouter>
@@ -33,7 +37,7 @@ const App = (props: AppPropsType) => {
                 <Nav/>
                 <div className='app-wrapper-content'>
                     <Route render={() => <Profile
-                        post={props.state.ProfilePage.postData} addPost={addPostCallback}/>} path={'/profile'} />
+                        post={props.state.ProfilePage.postData} postText={props.state.ProfilePage.newPostText} updatePost ={updatePostCallback} addPost={addPostCallback}/>} path={'/profile'} />
                     <Route render={() => <Dialogs
                         dialogState={props.state.DialogPage}/>}
                            path={'/dialogs'}/>

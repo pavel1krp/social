@@ -20,6 +20,8 @@ type AppPropsType = {
     state: StatePropsType
     addPost: (post:string)=>void
     updateNewPostText:(newText:string)=>void
+    addMessage:()=>void
+    updateMessageText:(messageText:string)=>void
 }
 
 
@@ -38,8 +40,8 @@ const App = (props: AppPropsType) => {
                 <div className='app-wrapper-content'>
                     <Route render={() => <Profile
                         post={props.state.ProfilePage.postData} postText={props.state.ProfilePage.newPostText} updatePost ={updatePostCallback} addPost={addPostCallback}/>} path={'/profile'} />
-                    <Route render={() => <Dialogs
-                        dialogState={props.state.DialogPage}/>}
+                    <Route render={() => <Dialogs addMessage={props.addMessage} updateMessageText={props.updateMessageText} newMessageText={props.state.DialogPage.newMessageText}
+                        dialogState={props.state.DialogPage} />}
                            path={'/dialogs'}/>
                     <Route render={() => <News/>}
                            path={'/news'}/>

@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {postDatapropsType, updateNewPostText} from "../../../Redux/State";
+import {postDatapropsType, } from "../../../Redux/State";
 
 type MyPostType ={
     post: Array<postDatapropsType>
@@ -16,12 +16,11 @@ const MyPosts = (props:MyPostType) => {
             <Post key = {el.id} title={el.name} src={el.src} text={el.message} likesCount={el.likesCount}/>
         )
     })
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
     const onChangeHandler =(e:ChangeEvent<HTMLTextAreaElement>)=>{
-        updateNewPostText(e.currentTarget.value)
+        props.updatePost(e.currentTarget.value)
     }
     const  addPostHandler = ()=>{
-        props.addPost(newPostElement.current? newPostElement.current.value : '')
+        props.addPost(props.postText)
     }
     return (
         <div className={s.postsBlock}>
@@ -30,7 +29,7 @@ const MyPosts = (props:MyPostType) => {
             </div>
             <div className={s.item}>
                 <div>
-                    <textarea ref={newPostElement} value={props.postText} className={s.textArea} onChange={onChangeHandler} ></textarea>
+                    <textarea  value={props.postText} className={s.textArea} onChange={onChangeHandler} ></textarea>
                 </div>
                 <div>
                     <button onClick={addPostHandler}>Add post</button>

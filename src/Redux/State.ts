@@ -26,12 +26,8 @@ export type StatePropsType = {
     DialogPage: DialogPageType
 }
 
-let rerenderTree = (state: StatePropsType)=>{
-    console.dir('state')
-}
-export const subscribe = (observer:(state: StatePropsType)=>void)=>{
-    rerenderTree= observer
-}
+
+
 export const store = {
     _state:{
         ProfilePage: {
@@ -88,6 +84,13 @@ export const store = {
             newMessageText: '',
         }
     },
+    rerenderTree (state: StatePropsType){
+        console.dir('state')
+    },
+    subscribe(observer:(state: StatePropsType)=>void){
+         this.rerenderTree= observer
+    }
+    ,
     addPost() {
         const newPost ={
             id:v1(),
@@ -97,11 +100,11 @@ export const store = {
             src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'}
         this._state.ProfilePage.postData.push(newPost)
         this._state.ProfilePage.newPostText =''
-        rerenderTree(this._state)
+         this.rerenderTree(this._state)
     },
     updateNewPostText (newText:string){
        this._state.ProfilePage.newPostText =newText
-    rerenderTree(this._state)
+     this.rerenderTree(this._state)
  },
     addMessage(){
         const newMessage = {
@@ -110,10 +113,10 @@ export const store = {
         }
         this._state.DialogPage.messagesData.push(newMessage)
         this._state.DialogPage.newMessageText = '';
-        rerenderTree(this._state)
+         this.rerenderTree(this._state)
     },
     updateMessageText (messageText:string){
         this._state.DialogPage.newMessageText = messageText;
-        rerenderTree(this._state)
+         this.rerenderTree(this._state)
     }
 }

@@ -1,5 +1,5 @@
 import './index.css';
-import { StatePropsType, subscribe,store } from "./Redux/State";
+import { StatePropsType,store } from "./Redux/State";
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
@@ -17,5 +17,5 @@ const rerenderEntireTree =(state:StatePropsType) =>{
     )
 }
 rerenderEntireTree(store._state)
-subscribe(rerenderEntireTree)
+store.subscribe(rerenderEntireTree)
 

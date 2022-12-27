@@ -18,20 +18,14 @@ export type MessagesDataType = {
 
 type AppPropsType = {
     state: StatePropsType
-    addPost: (post:string)=>void
-    updateNewPostText:(newText:string)=>void
+    dispatch:(type:any)=>void
     addMessage:()=>void
     updateMessageText:(messageText:string)=>void
 }
 
 
 const App = (props: AppPropsType) => {
-    const addPostCallback = (post:string)=>{
-        props.addPost(post)
-    }
-    const updatePostCallback =(newText:string)=>{
-        props.updateNewPostText(newText)
-    }
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -39,7 +33,7 @@ const App = (props: AppPropsType) => {
                 <Nav/>
                 <div className='app-wrapper-content'>
                     <Route render={() => <Profile
-                        post={props.state.ProfilePage.postData} postText={props.state.ProfilePage.newPostText} updatePost ={updatePostCallback} addPost={addPostCallback}/>} path={'/profile'} />
+                        post={props.state.ProfilePage.postData} postText={props.state.ProfilePage.newPostText} dispatch={props.dispatch}/>} path={'/profile'} />
                     <Route render={() => <Dialogs addMessage={props.addMessage} updateMessageText={props.updateMessageText} newMessageText={props.state.DialogPage.newMessageText}
                         dialogState={props.state.DialogPage} />}
                            path={'/dialogs'}/>

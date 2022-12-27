@@ -6,9 +6,8 @@ import App from "./App";
 const rerenderEntireTree =(state:StatePropsType) =>{
     ReactDOM.render(
         <React.StrictMode>
-            <App state={store._state}
-                 addPost={store.addPost.bind(store)}
-                 updateNewPostText={store.updateNewPostText.bind(store)}
+            <App state={store.getState()}
+                 dispatch = {store.dispatch.bind(store)}
                  updateMessageText={store.updateMessageText.bind(store)}
                  addMessage={store.addMessage.bind(store)}
             />

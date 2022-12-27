@@ -25,16 +25,24 @@ export type StatePropsType = {
     ProfilePage: ProfilePageType
     DialogPage: DialogPageType
 }
+export type StoreType = {
+    _state: StatePropsType
+    _callSubscriber:(state: StatePropsType)=>void
+    getState:()=> StatePropsType
+    subscribe:(observer:(state: StatePropsType)=>void)=>void
+    addMessage:()=>void
+    updateMessageText:(messageText:string)=>void
+    dispatch:(action:any)=>void
+}
 
 
-
-export const store = {
+export const store:StoreType = {
     _state:{
         ProfilePage: {
             postData: [
                 {
                     id: v1(),
-                    message: 'Игорь,спасибо,вкусно',
+                    message: 'Вкусно',
                     name: 'Dasha',
                     likesCount: 11111,
                     src: 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg'
@@ -84,28 +92,15 @@ export const store = {
             newMessageText: '',
         }
     },
-    rerenderTree (state: StatePropsType){
+    _callSubscriber (state: StatePropsType){
         console.dir('state')
     },
-    subscribe(observer:(state: StatePropsType)=>void){
-         this.rerenderTree= observer
-    }
-    ,
-    addPost() {
-        const newPost ={
-            id:v1(),
-            message: this._state.ProfilePage.newPostText,
-            name: 'LLLLova',
-            likesCount: 15,
-            src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'}
-        this._state.ProfilePage.postData.push(newPost)
-        this._state.ProfilePage.newPostText =''
-         this.rerenderTree(this._state)
+    getState(){
+        return this._state
     },
-    updateNewPostText (newText:string){
-       this._state.ProfilePage.newPostText =newText
-     this.rerenderTree(this._state)
- },
+    subscribe(observer:(state: StatePropsType)=>void){
+         this._callSubscriber= observer
+    },
     addMessage(){
         const newMessage = {
             id:v1(),
@@ -113,10 +108,33 @@ export const store = {
         }
         this._state.DialogPage.messagesData.push(newMessage)
         this._state.DialogPage.newMessageText = '';
-         this.rerenderTree(this._state)
+         this._callSubscriber(this._state)
     },
     updateMessageText (messageText:string){
         this._state.DialogPage.newMessageText = messageText;
-         this.rerenderTree(this._state)
+         this._callSubscriber(this._state)
+    },
+    dispatch(action:any){
+        switch (action.type) {
+            case "ADD-POST":{
+                const newPost ={
+                    id:v1(),
+                    message: this._state.ProfilePage.newPostText,
+                    name: 'LLLLova',
+                    likesCount: 15,
+                    src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'}
+                this._state.ProfilePage.postData.push(newPost)
+                this._state.ProfilePage.newPostText =''
+                this._callSubscriber(this._state)
+                break
+            }
+            case "UPDATE-NEW-POST-TEXT":{
+                this._state.ProfilePage.newPostText =action.newText
+                this._callSubscriber(this._state)
+                break
+            }
+            default: throw new Error("Wrong case")
+        }
+
     }
 }

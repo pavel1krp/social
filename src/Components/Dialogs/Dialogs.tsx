@@ -3,7 +3,12 @@ import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import {MessagesDataType} from "../../App";
-import {DialogDataType} from "../../Redux/State";
+import {
+    ActionType,
+    addMessageAC,
+    DialogDataType,
+    updateMessageTextAC
+} from "../../Redux/State";
 
 
 type allDialogTypes ={
@@ -13,8 +18,7 @@ type allDialogTypes ={
 
 type DialogPropsType ={
     dialogState: allDialogTypes
-    addMessage:()=>void
-    updateMessageText:(messageText:string)=>void
+    dispatch:(action:ActionType)=>void
     newMessageText:string
 }
 
@@ -22,10 +26,10 @@ const Dialogs = (props:DialogPropsType) => {
     const mapMessages = props.dialogState.messagesData.map(el=> <Message message={el.message}/>)
     const mapDialogs = props.dialogState.dialogsData.map(el => <DialogItem name={el.name} id={el.id}/>)
     const onMessageChangeHandler = (e:ChangeEvent<HTMLInputElement>)=>{
-        props.updateMessageText(e.currentTarget.value)
+        props.dispatch(updateMessageTextAC(e.currentTarget.value))
     }
     const onClickHandler = ()=>{
-        props.addMessage()
+        props.dispatch(addMessageAC())
     }
     return (
         <>

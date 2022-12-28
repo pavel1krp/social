@@ -8,8 +8,6 @@ const rerenderEntireTree =(state:StatePropsType) =>{
         <React.StrictMode>
             <App state={store.getState()}
                  dispatch = {store.dispatch.bind(store)}
-                 updateMessageText={store.updateMessageText.bind(store)}
-                 addMessage={store.addMessage.bind(store)}
             />
         </React.StrictMode>,
         document.getElementById('root')

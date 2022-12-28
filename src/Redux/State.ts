@@ -30,11 +30,34 @@ export type StoreType = {
     _callSubscriber:(state: StatePropsType)=>void
     getState:()=> StatePropsType
     subscribe:(observer:(state: StatePropsType)=>void)=>void
-    addMessage:()=>void
-    updateMessageText:(messageText:string)=>void
-    dispatch:(action:any)=>void
+    dispatch:(action:ActionType)=>void
 }
 
+export const ADD_POST = "ADD-POST"
+export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
+export const ADD_MESSAGE = "ADD-MESSAGE"
+export const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT"
+type AddPostActionType = {
+    type: "ADD-POST"
+}
+type UPDATE_NEW_POST_TEXT ={
+    type: "UPDATE-NEW-POST-TEXT",
+    newText:string
+}
+type UPDATE_MESSAGE_TEXT ={
+    type: "UPDATE-MESSAGE-TEXT",
+    messageText:string
+}
+type ADD_MESSAGE ={
+    type: "ADD-MESSAGE",
+}
+
+export type ActionType = AddPostActionType| UPDATE_NEW_POST_TEXT| UPDATE_MESSAGE_TEXT| ADD_MESSAGE
+
+export const addMessageAC = ():ActionType=>({type: ADD_MESSAGE})
+export const updateMessageTextAC = (messageText:string):ActionType=>({type: UPDATE_MESSAGE_TEXT, messageText})
+export const addPostAC = ():ActionType=> ({type:ADD_POST})
+export const updateNewPostTextAC = (newText:string):ActionType=>({type:UPDATE_NEW_POST_TEXT, newText})
 
 export const store:StoreType = {
     _state:{
@@ -101,22 +124,9 @@ export const store:StoreType = {
     subscribe(observer:(state: StatePropsType)=>void){
          this._callSubscriber= observer
     },
-    addMessage(){
-        const newMessage = {
-            id:v1(),
-            message: this._state.DialogPage.newMessageText
-        }
-        this._state.DialogPage.messagesData.push(newMessage)
-        this._state.DialogPage.newMessageText = '';
-         this._callSubscriber(this._state)
-    },
-    updateMessageText (messageText:string){
-        this._state.DialogPage.newMessageText = messageText;
-         this._callSubscriber(this._state)
-    },
-    dispatch(action:any){
+    dispatch(action:ActionType){
         switch (action.type) {
-            case "ADD-POST":{
+            case ADD_POST:{
                 const newPost ={
                     id:v1(),
                     message: this._state.ProfilePage.newPostText,
@@ -128,13 +138,27 @@ export const store:StoreType = {
                 this._callSubscriber(this._state)
                 break
             }
-            case "UPDATE-NEW-POST-TEXT":{
+            case UPDATE_NEW_POST_TEXT:{
                 this._state.ProfilePage.newPostText =action.newText
+                this._callSubscriber(this._state)
+                break
+            }
+            case ADD_MESSAGE:{
+                const newMessage = {
+                    id:v1(),
+                    message: this._state.DialogPage.newMessageText
+                }
+                this._state.DialogPage.messagesData.push(newMessage)
+                this._state.DialogPage.newMessageText = '';
+                this._callSubscriber(this._state)
+                break
+            }
+            case UPDATE_MESSAGE_TEXT:{
+                this._state.DialogPage.newMessageText = action.messageText;
                 this._callSubscriber(this._state)
                 break
             }
             default: throw new Error("Wrong case")
         }
-
     }
 }

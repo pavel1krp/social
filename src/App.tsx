@@ -19,8 +19,6 @@ export type MessagesDataType = {
 type AppPropsType = {
     state: StatePropsType
     dispatch:(type:any)=>void
-    addMessage:()=>void
-    updateMessageText:(messageText:string)=>void
 }
 
 
@@ -34,7 +32,7 @@ const App = (props: AppPropsType) => {
                 <div className='app-wrapper-content'>
                     <Route render={() => <Profile
                         post={props.state.ProfilePage.postData} postText={props.state.ProfilePage.newPostText} dispatch={props.dispatch}/>} path={'/profile'} />
-                    <Route render={() => <Dialogs addMessage={props.addMessage} updateMessageText={props.updateMessageText} newMessageText={props.state.DialogPage.newMessageText}
+                    <Route render={() => <Dialogs dispatch ={props.dispatch} newMessageText={props.state.DialogPage.newMessageText}
                         dialogState={props.state.DialogPage} />}
                            path={'/dialogs'}/>
                     <Route render={() => <News/>}

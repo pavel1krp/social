@@ -3,49 +3,46 @@ import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import {MessagesDataType} from "../../App";
+import {DialogDataType} from "../../Types/types";
 
-import {ActionsType, DialogDataType, } from "../../Redux/store";
-import {addMessageActionCreator, updateNewMessageCreator} from "../../Redux/dialogs-reducer.js";
 
-type allDialogTypes = {
+export type allDialogTypes ={
     dialogsData: DialogDataType[]
-    messagesData: MessagesDataType[]
+    messagesData:MessagesDataType[]
 }
 
-type DialogPropsType = {
+type DialogPropsType ={
     dialogState: allDialogTypes
-    newMessageBody:string
-    dispatch: (action:ActionsType) => void
+    addMessage:()=>void
+    updateMessage:(newMessage:string)=>void
+    newMessageText:string
 }
 
-const Dialogs = (props: DialogPropsType) => {
-    const mapMessages = props.dialogState.messagesData.map(el => <Message message={el.message}/>)
-    const mapDialogs = props.dialogState.dialogsData.map(el => <DialogItem name={el.name} id={el.id}/>)
-    let newMessageBody = props.newMessageBody
-
-    const onSendMessageClick = ()=>{
-        props.dispatch(addMessageActionCreator())
+const Dialogs = (props:DialogPropsType) => {
+    const mapMessages = props.dialogState.messagesData.map(el=> <Message key={el.id} message={el.message}/>)
+    const mapDialogs = props.dialogState.dialogsData.map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>)
+    const onMessageChangeHandler = (e:ChangeEvent<HTMLInputElement>)=>{
+        // props.dispatch(updateMessageTextAC(e.currentTarget.value))
+        props.updateMessage(e.currentTarget.value)
     }
-    const onSendMessageChange = (e:ChangeEvent<HTMLInputElement>)=>{
-        props.dispatch(updateNewMessageCreator(e.currentTarget.value))
+    const addMessageHandler = ()=>{
+        props.addMessage()
     }
     return (
         <>
-            <div className={s.content}>
-                <div className={s.dialogs}>
-                    {mapDialogs}
-                </div>
-                <div className={s.messages}>
-                    {mapMessages}
-                </div>
+        <div className ={s.content}>
+            <div className={s.dialogs}>
+                {mapDialogs}
             </div>
+            <div className={s.messages}>
+                {mapMessages}
+            </div>
+        </div>
             <div className={s.formDiv}>
-                    <input  className={s.textArea} value={props.newMessageBody}
-                              onChange={onSendMessageChange}/>
-                <button onClick={onSendMessageClick}>Add post</button>
-
-                {/*<InputButton buttonName={'Send message'}/>*/}
+                <input onChange={onMessageChangeHandler} className={s.sendInput} value={props.newMessageText} type="text"/>
+                <button className={s.sendButton} onClick={addMessageHandler}>Send message</button>
             </div>
+
         </>
     );
 };

@@ -18,10 +18,10 @@
     justify-content: center;
     margin: 10px;
 }
-.formDiv input{
+.sendInput{
     width: 400px;
 }
-.formDiv button{
+.sendButton{
     width: 150px;
     background-color: #557A95;
     border: none;

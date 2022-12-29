@@ -8,8 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import News from "./Components/News/News";
-import {StatePropsType, store} from "./Redux/Store";
-import {dialogReducer} from "./Redux/dialogReducer";
+import {StatePropsType} from "./Types/types";
 
 export type MessagesDataType = {
     id: string

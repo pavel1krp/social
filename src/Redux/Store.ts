@@ -2,62 +2,7 @@ import {v1} from "uuid";
 import { MessagesDataType} from "../App";
 import {profileReducer} from "./profileReducer";
 import {dialogReducer} from "./dialogReducer";
-export type postDatapropsType = {
-    id: string
-    message: string
-    name: string
-    likesCount: number
-    src: string
-}
-export type DialogPageType = {
-    dialogsData:DialogDataType[]
-    messagesData:MessagesDataType[]
-    newMessageText:string
-}
-export type DialogDataType = {
-    id: string
-    name: string
-}
-
-export type ProfilePageType = {
-    postData: postDatapropsType[],
-    newPostText: string
-}
-
-export type SideBarType = {}
-export type StatePropsType = {
-    profilePage: ProfilePageType
-    dialogPage: DialogPageType
-    sideBar: SideBarType
-}
-export type StoreType = {
-    _state: StatePropsType
-    _callSubscriber:(state: StatePropsType)=>void
-    getState:()=> StatePropsType
-    subscribe:(observer:(state: StatePropsType)=>void)=>void
-    dispatch:(action:ActionType)=>void
-}
-
-type AddPostActionType = {
-    type: "ADD-POST"
-}
-type UPDATE_NEW_POST_TEXT ={
-    type: "UPDATE-NEW-POST-TEXT",
-    newText:string
-}
-type UPDATE_MESSAGE_TEXT ={
-    type: "UPDATE-MESSAGE-TEXT",
-    messageText:string
-}
-type ADD_MESSAGE ={
-    type: "ADD-MESSAGE",
-}
-
-export type ActionType = AddPostActionType| UPDATE_NEW_POST_TEXT|
-    UPDATE_MESSAGE_TEXT| ADD_MESSAGE
-
-
-
+import {ActionType, StatePropsType, StoreType} from "../Types/types";
 export const store:StoreType = {
     _state:{
         profilePage: {

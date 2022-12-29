@@ -4,8 +4,8 @@ import {store } from "./Redux/redux-store";
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
-import {StatePropsType} from "./Redux/Store";
 import {EmptyObject} from "redux";
+import {StatePropsType} from "./Types/types";
 const rerenderEntireTree =(state:StatePropsType) =>{
 
     ReactDOM.render(

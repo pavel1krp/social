@@ -4,10 +4,9 @@ import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import {MessagesDataType} from "../../App";
 import {
-    ActionType,
-    DialogDataType,
 } from "../../Redux/Store";
 import {addMessageAC, updateMessageTextAC} from "../../Redux/dialogReducer";
+import {ActionType, DialogDataType} from "../../Types/types";
 
 
 type allDialogTypes ={

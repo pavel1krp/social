@@ -1,5 +1,5 @@
-import {ActionType, ProfilePageType} from "./Store";
 import {v1} from "uuid";
+import {ActionType, ProfilePageType} from "../Types/types";
 
 export const ADD_POST = "ADD-POST"
 export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"

@@ -1,7 +1,7 @@
 import React from 'react';
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {postDatapropsType} from "../../Redux/Store";
+import {postDatapropsType} from "../../Types/types";
 
 
 
@@ -17,7 +17,8 @@ const Profile = (props:PropsType) => {
 
     return (
         <div >
-            <ProfileInfo  src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnMBNcEe_EGXuh-UuvXVFkcXaDoqFS2TAbwQ&usqp=CAU'} alt={'Ava'}/>
+            <ProfileInfo  src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnMBNcEe_EGXuh-UuvXVFkcXaDoqFS2TAbwQ&usqp=CAU'}
+                          alt={'Ava'}/>
             <MyPosts dispatch={props.dispatch} postText ={props.postText} post ={props.post}/>
         </div>
     );

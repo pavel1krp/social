@@ -1,6 +1,6 @@
-import {ActionType, DialogPageType} from "./Store";
 import {v1} from "uuid";
-import {ADD_POST, UPDATE_NEW_POST_TEXT} from "./profileReducer";
+import {ActionType, DialogPageType} from "../Types/types";
+
 
 export const ADD_MESSAGE = "ADD-MESSAGE"
 export const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT"

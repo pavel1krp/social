@@ -8,7 +8,8 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import News from "./Components/News/News";
-import {StatePropsType} from "./Redux/State";
+import {StatePropsType, store} from "./Redux/Store";
+import {dialogReducer} from "./Redux/dialogReducer";
 
 export type MessagesDataType = {
     id: string
@@ -31,9 +32,9 @@ const App = (props: AppPropsType) => {
                 <Nav/>
                 <div className='app-wrapper-content'>
                     <Route render={() => <Profile
-                        post={props.state.ProfilePage.postData} postText={props.state.ProfilePage.newPostText} dispatch={props.dispatch}/>} path={'/profile'} />
-                    <Route render={() => <Dialogs dispatch ={props.dispatch} newMessageText={props.state.DialogPage.newMessageText}
-                        dialogState={props.state.DialogPage} />}
+                        post={props.state.profilePage.postData} postText={props.state.profilePage.newPostText} dispatch={props.dispatch}/>} path={'/profile'} />
+                    <Route render={() => <Dialogs dispatch ={props.dispatch} newMessageText={props.state.dialogPage.newMessageText}
+                        dialogState={props.state.dialogPage} />}
                            path={'/dialogs'}/>
                     <Route render={() => <News/>}
                            path={'/news'}/>

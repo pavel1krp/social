@@ -1,7 +1,7 @@
 import React from 'react';
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {postDatapropsType} from "../../Redux/State";
+import {postDatapropsType} from "../../Redux/Store";
 
 
 

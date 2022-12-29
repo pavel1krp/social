@@ -1,18 +1,21 @@
 import './index.css';
-import { StatePropsType,store } from "./Redux/State";
+import {store } from "./Redux/redux-store";
+// import {StatePropsType, store as sss} from "./Redux/Store";
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
+import {StatePropsType} from "./Redux/Store";
+import {EmptyObject} from "redux";
 const rerenderEntireTree =(state:StatePropsType) =>{
+
     ReactDOM.render(
         <React.StrictMode>
-            <App state={store.getState()}
+            <App state={state}
                  dispatch = {store.dispatch.bind(store)}
             />
         </React.StrictMode>,
         document.getElementById('root')
     )
 }
-rerenderEntireTree(store._state)
-store.subscribe(rerenderEntireTree)
-
+rerenderEntireTree(store.getState())
+store.subscribe(()=> rerenderEntireTree(store.getState()))

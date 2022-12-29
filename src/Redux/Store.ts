@@ -1,5 +1,7 @@
 import {v1} from "uuid";
 import { MessagesDataType} from "../App";
+import {profileReducer} from "./profileReducer";
+import {dialogReducer} from "./dialogReducer";
 export type postDatapropsType = {
     id: string
     message: string
@@ -21,9 +23,12 @@ export type ProfilePageType = {
     postData: postDatapropsType[],
     newPostText: string
 }
+
+export type SideBarType = {}
 export type StatePropsType = {
-    ProfilePage: ProfilePageType
-    DialogPage: DialogPageType
+    profilePage: ProfilePageType
+    dialogPage: DialogPageType
+    sideBar: SideBarType
 }
 export type StoreType = {
     _state: StatePropsType
@@ -33,10 +38,6 @@ export type StoreType = {
     dispatch:(action:ActionType)=>void
 }
 
-export const ADD_POST = "ADD-POST"
-export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
-export const ADD_MESSAGE = "ADD-MESSAGE"
-export const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT"
 type AddPostActionType = {
     type: "ADD-POST"
 }
@@ -52,16 +53,14 @@ type ADD_MESSAGE ={
     type: "ADD-MESSAGE",
 }
 
-export type ActionType = AddPostActionType| UPDATE_NEW_POST_TEXT| UPDATE_MESSAGE_TEXT| ADD_MESSAGE
+export type ActionType = AddPostActionType| UPDATE_NEW_POST_TEXT|
+    UPDATE_MESSAGE_TEXT| ADD_MESSAGE
 
-export const addMessageAC = ():ActionType=>({type: ADD_MESSAGE})
-export const updateMessageTextAC = (messageText:string):ActionType=>({type: UPDATE_MESSAGE_TEXT, messageText})
-export const addPostAC = ():ActionType=> ({type:ADD_POST})
-export const updateNewPostTextAC = (newText:string):ActionType=>({type:UPDATE_NEW_POST_TEXT, newText})
+
 
 export const store:StoreType = {
     _state:{
-        ProfilePage: {
+        profilePage: {
             postData: [
                 {
                     id: v1(),
@@ -94,7 +93,7 @@ export const store:StoreType = {
             ],
             newPostText:'',
         },
-        DialogPage: {
+        dialogPage: {
             dialogsData: [
                 {id: v1(), name: 'Pasha'},
                 {id: v1(), name: 'Dasha'},
@@ -113,7 +112,8 @@ export const store:StoreType = {
                 {id: v1(), message: 'Bye'},
             ],
             newMessageText: '',
-        }
+        },
+        sideBar:{}
     },
     _callSubscriber (state: StatePropsType){
         console.dir('state')
@@ -125,40 +125,8 @@ export const store:StoreType = {
          this._callSubscriber= observer
     },
     dispatch(action:ActionType){
-        switch (action.type) {
-            case ADD_POST:{
-                const newPost ={
-                    id:v1(),
-                    message: this._state.ProfilePage.newPostText,
-                    name: 'LLLLova',
-                    likesCount: 15,
-                    src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'}
-                this._state.ProfilePage.postData.push(newPost)
-                this._state.ProfilePage.newPostText =''
-                this._callSubscriber(this._state)
-                break
-            }
-            case UPDATE_NEW_POST_TEXT:{
-                this._state.ProfilePage.newPostText =action.newText
-                this._callSubscriber(this._state)
-                break
-            }
-            case ADD_MESSAGE:{
-                const newMessage = {
-                    id:v1(),
-                    message: this._state.DialogPage.newMessageText
-                }
-                this._state.DialogPage.messagesData.push(newMessage)
-                this._state.DialogPage.newMessageText = '';
-                this._callSubscriber(this._state)
-                break
-            }
-            case UPDATE_MESSAGE_TEXT:{
-                this._state.DialogPage.newMessageText = action.messageText;
-                this._callSubscriber(this._state)
-                break
-            }
-            default: throw new Error("Wrong case")
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._callSubscriber(this._state)
+        this._state.dialogPage = dialogReducer(this._state.dialogPage, action)
     }
 }

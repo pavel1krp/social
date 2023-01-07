@@ -38,25 +38,29 @@ let initialState = {
     newPostText:'',
 }
 
-export const profileReducer =(state:ProfilePageType = initialState, action: ActionType)=>{
+export const profileReducer = (state:ProfilePageType = initialState, action:ActionType) =>{
     switch (action.type){
-        case ADD_POST:
-            const newPost ={
-                id:v1(),
+        case ADD_POST :{
+            let newPost = {
+                id: v1(),
                 message: state.newPostText,
-                name: 'LLLLova',
-                likesCount: 15,
-                src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'}
-            state.postData.push(newPost)
-            state.newPostText =''
-            return state
-
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText =action.newText
-            return state
-
-        default: console.log(action.type)
-            return state
+                name: 'LLIova',
+                likesCount: 0,
+                src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'
+            }
+            let stateCopy =  {...state}
+            stateCopy.postData = [...state.postData]
+            console.log(stateCopy.postData)
+            stateCopy.postData.push(newPost)
+            stateCopy.newPostText = ''
+            return stateCopy
+        }
+        case UPDATE_NEW_POST_TEXT:{
+            let stateCopy1 = {...state}
+            stateCopy1.newPostText = action.newText
+            return stateCopy1
+        }
+        default:return state
     }
 }
 

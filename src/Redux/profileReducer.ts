@@ -48,17 +48,11 @@ export const profileReducer = (state:ProfilePageType = initialState, action:Acti
                 likesCount: 0,
                 src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'
             }
-            let stateCopy =  {...state}
-            stateCopy.postData = [...state.postData]
-            console.log(stateCopy.postData)
-            stateCopy.postData.push(newPost)
-            stateCopy.newPostText = ''
-            return stateCopy
+            state.newPostText = ''
+            return {...state, postData:[...state.postData, newPost]}
         }
         case UPDATE_NEW_POST_TEXT:{
-            let stateCopy1 = {...state}
-            stateCopy1.newPostText = action.newText
-            return stateCopy1
+            return {...state, newPostText: action.newText}
         }
         default:return state
     }

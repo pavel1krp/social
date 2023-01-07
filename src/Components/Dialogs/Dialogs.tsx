@@ -22,7 +22,6 @@ const Dialogs = (props:DialogPropsType) => {
     const mapMessages = props.dialogState.messagesData.map(el=> <Message key={el.id} message={el.message}/>)
     const mapDialogs = props.dialogState.dialogsData.map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>)
     const onMessageChangeHandler = (e:ChangeEvent<HTMLInputElement>)=>{
-        // props.dispatch(updateMessageTextAC(e.currentTarget.value))
         props.updateMessage(e.currentTarget.value)
     }
     const addMessageHandler = ()=>{

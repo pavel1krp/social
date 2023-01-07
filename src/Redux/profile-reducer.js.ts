@@ -1,10 +1,10 @@
 import {v1} from "uuid";
-import {ActionsType, ProfilePageType} from "./store";
+import {ActionType, ProfilePageType} from "../Types/types";
 
 const ADD_POSt = "ADD-POST";
 const UPDATE_NEW_POST_TEXT ="UPDATE-NEW-POST-TEXT";
 
-export const profileReducer = (state:ProfilePageType, action:ActionsType) =>{
+export const profileReducer = (state:ProfilePageType, action:ActionType) =>{
     switch (action.type){
         case ADD_POSt :{
             let newPost = {
@@ -25,5 +25,5 @@ export const profileReducer = (state:ProfilePageType, action:ActionsType) =>{
         default:return state
     }
 }
-export const addPostActionCreator = ():ActionsType=>({ type:ADD_POSt});
-export const onPostChangeActionCreator = (newText:string):ActionsType=>({type:UPDATE_NEW_POST_TEXT , newText});
+export const addPostActionCreator = ():ActionType=>({ type:ADD_POSt});
+export const onPostChangeActionCreator = (newText:string):ActionType=>({type:UPDATE_NEW_POST_TEXT , newText});

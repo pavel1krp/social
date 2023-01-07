@@ -12,6 +12,11 @@ export type DialogPageType = {
     messagesData:MessagesDataType[]
     newMessageText:string
 }
+export type ContextType ={
+    store: StoreType
+    dispatch: ({type}:{type:string})=>void
+    getState:()=>StatePropsType
+}
 export type DialogDataType = {
     id: string
     name: string

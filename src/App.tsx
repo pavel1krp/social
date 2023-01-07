@@ -7,8 +7,9 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import News from "./Components/News/News";
-import {StatePropsType} from "./Types/types";
-import DialogsContainer from "./Components/Dialogs/DialogsContainer";
+import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
+import {ProfileContainer} from "./Components/Profile/ProfileContainer";
+
 
 export type MessagesDataType = {
     id: string
@@ -17,8 +18,6 @@ export type MessagesDataType = {
 
 
 type AppPropsType = {
-    state: StatePropsType
-    dispatch:(type:any)=>void
 }
 
 
@@ -30,9 +29,8 @@ const App = (props: AppPropsType) => {
                 <Header/>
                 <Nav/>
                 <div className='app-wrapper-content'>
-                    <Route render={() => <Profile
-                        post={props.state.profilePage.postData} postText={props.state.profilePage.newPostText} dispatch={props.dispatch}/>} path={'/profile'} />
-                    <Route render={() => <DialogsContainer dialogState={props.state.dialogPage} dispatch={props.dispatch} newMessageText={props.state.dialogPage.newMessageText} />}
+                    <Route render={() => <ProfileContainer />} path={'/profile'} />
+                    <Route render={() => <DialogsContainer />}
                            path={'/dialogs'}/>
                     <Route render={() => <News/>}
                            path={'/news'}/>

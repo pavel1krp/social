@@ -10,15 +10,13 @@ export type ProfileProps ={
 }
 type PropsType = {
     post: postDatapropsType[]
-    postText: string
-    dispatch:(action:ActionType)=>void
 }
 const Profile = (props:PropsType) => {
     return (
         <div >
             <ProfileInfo  src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnMBNcEe_EGXuh-UuvXVFkcXaDoqFS2TAbwQ&usqp=CAU'}
                           alt={'Ava'}/>
-            < MyPostContainer dispatch={props.dispatch} postText={props.postText} post={props.post}/>
+            < MyPostContainer />
         </div>
     );
 };

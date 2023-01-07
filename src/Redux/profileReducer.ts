@@ -48,8 +48,7 @@ export const profileReducer = (state:ProfilePageType = initialState, action:Acti
                 likesCount: 0,
                 src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'
             }
-            state.newPostText = ''
-            return {...state, postData:[...state.postData, newPost]}
+            return {...state, postData:[...state.postData, newPost], newPostText: ''}
         }
         case UPDATE_NEW_POST_TEXT:{
             return {...state, newPostText: action.newText}

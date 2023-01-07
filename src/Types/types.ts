@@ -1,5 +1,7 @@
 import {MessagesDataType} from "../App";
 
+
+
 export type postDatapropsType = {
     id: string
     message: string
@@ -30,6 +32,7 @@ export type StatePropsType = {
     profilePage: ProfilePageType
     dialogPage: DialogPageType
     sideBar: SideBarType
+    usersPage: UsersDataType
 }
 export type StoreType = {
     _state: StatePropsType
@@ -52,4 +55,24 @@ export type UPDATE_MESSAGE_TEXT ={
 export type ADD_MESSAGE ={
     type: "ADD-MESSAGE",
 }
-export type ActionType = AddPostActionType| UPDATE_NEW_POST_TEXT|UPDATE_MESSAGE_TEXT| ADD_MESSAGE
+export type UsersType = {
+    id: string
+    fullName:string
+    status:string
+    location:{city:string, county:string}
+    followed:boolean}
+export type UsersDataType = {
+    users: UsersType[]
+}
+
+// export type unFollowAcType = ReturnType<typeof unFollowAC>
+export type toggleAcType = {
+    type:"TOGGLE",
+    userId:string
+
+}
+export type ActionType = AddPostActionType|
+    UPDATE_NEW_POST_TEXT|
+    UPDATE_MESSAGE_TEXT|
+    ADD_MESSAGE|toggleAcType
+

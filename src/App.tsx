@@ -9,6 +9,8 @@ import Settings from "./Components/Settings/Settings";
 import News from "./Components/News/News";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import {ProfileContainer} from "./Components/Profile/ProfileContainer";
+import {Users} from "./Components/Users/Users";
+import {UsersContainer} from "./Components/Users/UsersContainer";
 
 
 export type MessagesDataType = {
@@ -38,7 +40,7 @@ const App = (props: AppPropsType) => {
                            path={'/music'}/>
                     <Route render={() => <Settings/>}
                            path={'/setting'}/>
-                    <Route path={'/users'}  render={()=> <div>Hello</div>}/>
+                    <Route path={'/users'}  render={()=> <UsersContainer />}/>
                 </div>
             </div>
         </BrowserRouter>

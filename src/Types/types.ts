@@ -57,11 +57,16 @@ export type ADD_MESSAGE ={
 }
 export type UsersType = {
     id: string
-    urlPhoto: string
-    fullName:string
+    photos:{
+        small:string
+        large:string
+    }
+    name:string
     status:string
-    location:{city:string, county:string}
-    followed:boolean}
+    // location:{city:string, county:string}
+    followed:boolean
+    uniqueUrlName: string
+}
 export type UsersDataType = {
     users: UsersType[]
 }

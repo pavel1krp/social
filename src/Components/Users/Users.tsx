@@ -57,11 +57,15 @@ export const Users = (props: UserPropsType) => {
                     {el.followed ? <button onClick={changeFollow}>Follow</button> :
                         <button onClick={changeFollow}>Unfollow</button>}
                 </div>
-                <div>
-                    <div>{el.fullName}</div>
-                    <div>{el.status}</div>
-                    <div>{el.location.county}</div>
-                    <div>{el.location.city}</div>
+                <div className={style.userInfo}>
+                    <div className={style.userAbout}>
+                        <p>{el.fullName}</p>
+                        <p>{el.status}</p>
+                    </div>
+                    <div className={style.userAbout}>
+                        <p>{el.location.county}</p>
+                        <p>{el.location.city}</p>
+                    </div>
                 </div>
             </div>
         )
@@ -70,6 +74,8 @@ export const Users = (props: UserPropsType) => {
     return (
         <div className={style.usersWrapper}>
             {mappedUsers}
+            <div className={style.bigButtonDiv}><button className={style.bitButton}>Show more</button></div>
+
         </div>
     );
 };

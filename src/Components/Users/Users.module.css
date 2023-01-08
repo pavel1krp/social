@@ -1,8 +1,10 @@
 .usersElement{
     display: flex;
+    gap: 50px;
+    margin: 15px 0;
 }
 .usersWrapper{
-    padding: 10px 40px   ;
+    padding: 10px 40px ;
 }
 .userImg{
     width: 100px;
@@ -14,4 +16,31 @@
     display: flex;
     flex-direction: column;
 }
-
+.userInfo{
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid #7395AE;
+    border-radius: 20px;
+    padding:0 20px;
+    width: 600px;
+}
+.userAbout{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+button{
+    background-color: #7395AE;
+    border: 1px solid #5D5C61;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.bigButtonDiv{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+.bitButton{
+    width: 160px;
+    height: 40px;
+}

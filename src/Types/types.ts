@@ -57,6 +57,7 @@ export type ADD_MESSAGE ={
 }
 export type UsersType = {
     id: string
+    urlPhoto: string
     fullName:string
     status:string
     location:{city:string, county:string}
@@ -69,10 +70,14 @@ export type UsersDataType = {
 export type toggleAcType = {
     type:"TOGGLE",
     userId:string
-
+}
+export type SetUsersACType ={
+    type: "SET-USERS"
+    users:UsersType[]
 }
 export type ActionType = AddPostActionType|
     UPDATE_NEW_POST_TEXT|
     UPDATE_MESSAGE_TEXT|
-    ADD_MESSAGE|toggleAcType
+    ADD_MESSAGE|toggleAcType|
+    SetUsersACType
 

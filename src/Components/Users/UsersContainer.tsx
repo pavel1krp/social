@@ -1,9 +1,8 @@
-import React from 'react';
 import {connect} from "react-redux";
 import {Users} from "./Users";
-import {StatePropsType} from "../../Types/types";
+import {StatePropsType, UsersType} from "../../Types/types";
 import {Dispatch} from "redux";
-import {toggleAc} from "../../Redux/usersReduser";
+import {setUsersAC, toggleAc} from "../../Redux/usersReduser";
 
 const mapStateToProps = (state:StatePropsType)=>{
     return {
@@ -14,6 +13,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         toggle:(userId:string)=>{
             dispatch(toggleAc(userId))
+        },
+        setUsers: (user:UsersType[])=>{
+            dispatch(setUsersAC(user))
         }
     }
 }

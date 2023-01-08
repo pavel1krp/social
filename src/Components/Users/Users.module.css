@@ -1,0 +1,17 @@
+.usersElement{
+    display: flex;
+}
+.usersWrapper{
+    padding: 10px 40px   ;
+}
+.userImg{
+    width: 100px;
+    height: 100px;
+    background: whitesmoke;
+    border-radius: 50%;
+}
+.singleUserElement{
+    display: flex;
+    flex-direction: column;
+}
+

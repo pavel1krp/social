@@ -6,13 +6,14 @@ import {UsersType} from "../../Types/types";
 import {usersAllStateType} from "./UsersContainer";
 
 export class Users extends React.Component<usersAllStateType> {
-    constructor(props:any) {
-        super(props)
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(response => {
-                    this.props.setUsers(response.data.items)
-                });
+
+    componentDidMount() {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            });
     }
+
     render() {
         const mappedUsers = this.props.users.map((el:UsersType) => {
             const changeFollow = () => {

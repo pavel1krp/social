@@ -63,7 +63,6 @@ export type UsersType = {
     }
     name:string
     status:string
-    // location:{city:string, county:string}
     followed:boolean
     uniqueUrlName: string
 }

@@ -12,11 +12,15 @@ export type UserPropsType = {
 
 export const Users = (props: UserPropsType) => {
     const {users, toggle, setUsers, ...restProps} = props
-    if (users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response =>{
-            setUsers(response.data.items)
-        })
+
+    const getUsers = ( )=>{
+        if (users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response =>{
+                setUsers(response.data.items)
+            })
+        }
     }
+
     const mappedUsers = users.map(el => {
         const changeFollow = () => {
             toggle(el.id)
@@ -35,6 +39,7 @@ export const Users = (props: UserPropsType) => {
                     </div>
                     <div className={style.userAbout}>
                         <p>{'el.location.county'}</p>
+                        <p>{el.id}</p>
                         <p>{'el.location.city'}</p>
                     </div>
                 </div>
@@ -44,6 +49,7 @@ export const Users = (props: UserPropsType) => {
     console.log(users)
     return (
         <div className={style.usersWrapper}>
+            <button onClick={getUsers}>Get Users</button>
             {mappedUsers}
             <div className={style.bigButtonDiv}><button className={style.bitButton}>Show more</button></div>
 

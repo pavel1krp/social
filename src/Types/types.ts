@@ -1,4 +1,5 @@
 import {MessagesDataType} from "../App";
+import {setCurrentPageACType, setTotalUserCountACType} from "../Redux/usersReduser";
 
 
 
@@ -68,6 +69,9 @@ export type UsersType = {
 }
 export type UsersDataType = {
     users: UsersType[]
+    pageSize: number
+    totalUserCount: number
+    currentPage:number
 }
 
 // export type unFollowAcType = ReturnType<typeof unFollowAC>
@@ -83,5 +87,6 @@ export type ActionType = AddPostActionType|
     UPDATE_NEW_POST_TEXT|
     UPDATE_MESSAGE_TEXT|
     ADD_MESSAGE|toggleAcType|
-    SetUsersACType
+    SetUsersACType|setCurrentPageACType|
+    setTotalUserCountACType
 

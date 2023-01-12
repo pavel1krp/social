@@ -7,8 +7,9 @@ import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import News from "./Components/News/News";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
-import {ProfileContainer} from "./Components/Profile/ProfileContainer";
 import {UsersContainer} from "./Components/Users/UsersContainer";
+import {store} from "./Redux/redux-store";
+import {ProfileContainer} from "./Components/Profile/ProfileContainer";
 
 
 export type MessagesDataType = {

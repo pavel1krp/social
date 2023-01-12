@@ -1,8 +1,28 @@
 import {MessagesDataType} from "../App";
 import {setCurrentPageACType, setTotalUserCountACType, toggleIsFetchingType} from "../Redux/usersReduser";
+import {SetUserProfileType} from "../Redux/profileReducer";
 
 
-
+export type UserProfileType = {
+    aboutMe: string,
+    contacts:{
+        facebook:string
+        website:string
+        vk:string
+        twitter:string
+        instagram:string
+        youtube:string
+        github:string
+        mainLink:string
+    }
+    lookingForAJob: boolean
+    lookingForAJobDescription:string
+    photos:{
+        large:string
+        small:string
+    }
+    userId:number
+}
 export type postDatapropsType = {
     id: string
     message: string
@@ -26,7 +46,8 @@ export type DialogDataType = {
 }
 export type ProfilePageType = {
     postData: postDatapropsType[],
-    newPostText: string
+    newPostText: string,
+    profile:UserProfileType
 }
 export type SideBarType = {}
 export type StatePropsType = {
@@ -89,5 +110,6 @@ export type ActionType = AddPostActionType|
     UPDATE_MESSAGE_TEXT|
     ADD_MESSAGE|toggleAcType|
     SetUsersACType|setCurrentPageACType|
-    setTotalUserCountACType|toggleIsFetchingType
+    setTotalUserCountACType|toggleIsFetchingType|
+    SetUserProfileType
 

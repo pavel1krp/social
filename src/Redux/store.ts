@@ -1,8 +1,8 @@
 import {v1} from "uuid";
-// import { MessagesDataType} from "../App";
-// import {profileReducer} from "./profileReducer";
-// import {dialogReducer} from "./dialogReducer";
-// import {ActionType, StatePropsType, StoreType} from "../Types/types";
+import { MessagesDataType} from "../App";
+import {profileReducer} from "./profileReducer";
+import {dialogReducer} from "./dialogReducer";
+import {ActionType, StatePropsType, StoreType} from "../Types/types";
 // export const store:StoreType = {
 //     _state:{
 //         profilePage: {

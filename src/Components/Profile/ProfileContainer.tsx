@@ -1,19 +1,35 @@
 import React from 'react';
-import {StatePropsType} from "../../Types/types";
-import {connect} from "react-redux";
-import {Dispatch} from "redux";
 import Profile from "./Profile";
+import axios from "axios";
+import {connect} from "react-redux";
+import {setUserProfileAC} from "../../Redux/profileReducer";
+import {StatePropsType, UserProfileType} from "../../Types/types";
 
+
+export class ProfileApiContainer extends  React.Component<MapStateToPropsType & MapDispatchType>{
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+            .then(response => {
+                this.props.setUserProfileAC(response.data)
+            });
+    }
+
+    render() {
+        return (
+            <Profile profile={this.props.profile} />
+        )
+    }
+}
+type MapDispatchType = {
+    setUserProfileAC:(profile:any)=>void,
+}
+type MapStateToPropsType = {
+    profile:UserProfileType
+}
 export const mapStateToProps = (state:StatePropsType) => {
-    return {
-       post:state.profilePage.postData
-    }
-}
-const mapDispatchToProps = (dispatch:Dispatch) => {
-    return {
-
-    }
+ return{
+     profile: state.profilePage.profile
+ }
 }
 
-
-export const ProfileContainer = connect(mapStateToProps,mapDispatchToProps)(Profile)
+export const ProfileContainer =  connect(mapStateToProps, {setUserProfileAC})(ProfileApiContainer)

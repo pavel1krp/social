@@ -1,10 +1,16 @@
 import {v1} from "uuid";
-import {ActionType, ProfilePageType} from "../Types/types";
+import {ActionType, postDatapropsType, ProfilePageType, UserProfileType} from "../Types/types";
 
 export const ADD_POST = "ADD-POST"
 export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
 
-let initialState = {
+type initialStateType = {
+    postData:postDatapropsType[]
+    newPostText:string
+    profile:UserProfileType
+}
+
+let initialState:initialStateType = {
     postData: [
         {
             id: v1(),
@@ -36,9 +42,29 @@ let initialState = {
         },
     ],
     newPostText:'',
+    profile: {
+        aboutMe: '',
+        contacts:{
+            facebook:'',
+            website:'',
+            vk:'',
+            twitter:'',
+            instagram:'',
+            youtube:'',
+            github:'',
+            mainLink:'',
+        },
+        lookingForAJob: true,
+        lookingForAJobDescription:'',
+        photos:{
+            large:'',
+            small:'',
+        },
+        userId: 0
+    }
 }
 
-export const profileReducer = (state:ProfilePageType = initialState, action:ActionType) =>{
+export const profileReducer = (state:initialStateType = initialState, action:ActionType) =>{
     switch (action.type){
         case ADD_POST :{
             let newPost = {
@@ -50,12 +76,12 @@ export const profileReducer = (state:ProfilePageType = initialState, action:Acti
             }
             return {...state, postData:[...state.postData, newPost], newPostText: ''}
         }
-        case UPDATE_NEW_POST_TEXT:{
-            return {...state, newPostText: action.newText}
-        }
+        case UPDATE_NEW_POST_TEXT:return {...state, newPostText: action.newText}
+        case "SET-USER-PROFILE": return {...state, profile: action.profile  }
         default:return state
     }
 }
-
+export type SetUserProfileType = ReturnType<typeof setUserProfileAC>
+export const setUserProfileAC =  (profile:UserProfileType)=> ({type: 'SET-USER-PROFILE', profile} as const)
 export const addPostAC = ():ActionType=> ({type:ADD_POST})
 export const updateNewPostTextAC = (newText:string):ActionType=>({type:UPDATE_NEW_POST_TEXT, newText})

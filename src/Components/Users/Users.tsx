@@ -3,6 +3,7 @@ import {UsersType} from "../../Types/types";
 import style from './Users.module.css'
 import axios from 'axios';
 import smallUserAvatar from '../../assets/images/smallUsersAva.png'
+import {NavLink} from "react-router-dom";
 
 export type UserPropsType = {
     users: UsersType[]
@@ -28,7 +29,11 @@ export const Users = (props: UserPropsType) => {
         return (
             <div key={el.id} className={style.usersElement}>
                 <div className={style.singleUserElement}>
-                    <div><img src={el.photos.small != null? el.photos.small :smallUserAvatar} className={style.userImg}  alt=""/></div>
+                    <div>
+                        <NavLink to={'/profile/'+ el.id}>
+                        <img src={el.photos.small != null? el.photos.small :smallUserAvatar} className={style.userImg}  alt=""/>
+                        </NavLink>
+                    </div>
                     {el.followed ? <button onClick={changeFollow}>Follow</button> :
                         <button onClick={changeFollow}>Unfollow</button>}
                 </div>

@@ -55,8 +55,8 @@ export const Users = (props: UserPropsType) => {
     for(let i =1 ; i<=pagesCount; i++){
         pages.push(i)
     }
-    const mappedButton = pages.map(el=>{
-        return <button onClick={()=>props.onPageChanged(el)} className={props.currentPage ==el? style.selected: ''} >{el}</button>}
+    const mappedButton = pages.map((el,id)=>{
+        return <button key={id} onClick={()=>props.onPageChanged(el)} className={props.currentPage ==el? style.selected: ''} >{el}</button>}
     )
     return <div>
         <div>

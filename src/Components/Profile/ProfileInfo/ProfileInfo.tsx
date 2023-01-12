@@ -8,7 +8,7 @@ import twitter from '../../../assets/icons/twitter.png'
 import youtube from '../../../assets/icons/youtube.png'
 import github from '../../../assets/icons/github-mark.png'
 import {Preloader} from "../../Common/Preloader/Preloader";
-
+import smallUserAvatar from '../../../assets/images/smallUsersAva.png'
 
 type ProfileInfoPropsType = {
     src: string,
@@ -19,14 +19,14 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
     if (!props.profile) {
         return <Preloader />
     }
+    console.log(props.profile.photos)
     return (
         <div>
             <div>
                 <img className={s.profile_ava} src={props.src} alt={'background'}/>
                 <div className={s.description_block}>
                     <div className={s.photoAndSocial}>
-                        <img className={s.myAva}
-                             src={props.profile.photos? props.profile.photos.small : 'https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg'}
+                        <img className={s.myAva} src={props.profile.photos.large !==null? props.profile.photos.large: smallUserAvatar }
                              alt="eto ya"/>
                         <div className={s.social}>
                             <a href={props.profile.contacts.facebook}><img className={s.logo} src={facebook}

@@ -26,7 +26,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <img className={s.profile_ava} src={props.src} alt={'background'}/>
                 <div className={s.description_block}>
                     <div className={s.photoAndSocial}>
-                        <img className={s.myAva} src={props.profile.photos.large !==null? props.profile.photos.large: smallUserAvatar }
+                        <img className={s.myAva} src={props.profile.photos.small !==null? props.profile.photos.small: smallUserAvatar }
                              alt="eto ya"/>
                         <div className={s.social}>
                             <a href={props.profile.contacts.facebook}><img className={s.logo} src={facebook}

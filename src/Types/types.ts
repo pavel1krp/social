@@ -1,6 +1,6 @@
 import {MessagesDataType} from "../App";
 import {setCurrentPageACType, setTotalUserCountACType, toggleIsFetchingType} from "../Redux/usersReduser";
-import {SetUserProfileType} from "../Redux/profileReducer";
+import {PostLikeAcType, SetUserProfileType} from "../Redux/profileReducer";
 
 
 export type UserProfileType = {
@@ -111,5 +111,5 @@ export type ActionType = AddPostActionType|
     ADD_MESSAGE|toggleAcType|
     SetUsersACType|setCurrentPageACType|
     setTotalUserCountACType|toggleIsFetchingType|
-    SetUserProfileType
+    SetUserProfileType|PostLikeAcType
 

@@ -8,12 +8,14 @@ type MyPostType ={
     postText:string
     updateNewPostText: (newText:string)=>void
     addPost:()=>void
+    likeAdd:(id:string)=>void
 }
 
 export const MyPosts = (props:MyPostType) => {
     const posts = props.post.map(el=>{
+        console.log(props.post)
         return(
-            <Post key = {el.id} title={el.name} src={el.src} text={el.message} likesCount={el.likesCount}/>
+            <Post postId={el.id} likeAdd={props.likeAdd} key = {el.id} title={el.name} src={el.src} text={el.message} likesCount={el.likesCount}/>
         )
     })
     const onChangeHandler =(e:ChangeEvent<HTMLTextAreaElement>)=>{

@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {ActionType, postDatapropsType, ProfilePageType, UserProfileType} from "../Types/types";
+import {ActionType, postDatapropsType, UserProfileType} from "../Types/types";
 
 export const ADD_POST = "ADD-POST"
 export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
@@ -78,10 +78,14 @@ export const profileReducer = (state:initialStateType = initialState, action:Act
         }
         case UPDATE_NEW_POST_TEXT:return {...state, newPostText: action.newText}
         case "SET-USER-PROFILE": return {...state, profile: action.profile  }
+        case 'POST-LIKE':return  {...state, postData:state.postData
+                .map(el=> el.id === action.postId?{...el, likesCount: el.likesCount+1} :el )  }
         default:return state
     }
 }
 export type SetUserProfileType = ReturnType<typeof setUserProfileAC>
+export type PostLikeAcType = ReturnType<typeof postLikeAC>
+export const postLikeAC = (postId:string)=>({type:'POST-LIKE', postId}as const)
 export const setUserProfileAC =  (profile:UserProfileType)=> ({type: 'SET-USER-PROFILE', profile} as const)
 export const addPostAC = ():ActionType=> ({type:ADD_POST})
 export const updateNewPostTextAC = (newText:string):ActionType=>({type:UPDATE_NEW_POST_TEXT, newText})

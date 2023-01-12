@@ -2,7 +2,7 @@ import React from 'react';
 import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {setUserProfileAC} from "../../Redux/profileReducer";
+import {postLikeAC, setUserProfileAC} from "../../Redux/profileReducer";
 import {StatePropsType, UserProfileType} from "../../Types/types";
 
 
@@ -16,7 +16,7 @@ export class ProfileApiContainer extends  React.Component<MapStateToPropsType & 
 
     render() {
         return (
-            <Profile profile={this.props.profile} />
+            <Profile  profile={this.props.profile} />
         )
     }
 }
@@ -32,4 +32,4 @@ export const mapStateToProps = (state:StatePropsType) => {
  }
 }
 
-export const ProfileContainer =  connect(mapStateToProps, {setUserProfileAC})(ProfileApiContainer)
+export const ProfileContainer =  connect(mapStateToProps, {setUserProfileAC,postLikeAC})(ProfileApiContainer)

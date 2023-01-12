@@ -72,7 +72,7 @@ export const profileReducer = (state:initialStateType = initialState, action:Act
                 message: state.newPostText,
                 name: 'LLIova',
                 likesCount: 0,
-                src: 'https://klike.net/uploads/posts/2019-03/1551511808_5.jpg'
+                src: state.profile.photos.large?state.profile.photos.large: 'http://risovach.ru/thumb/upload/200s400/2014/07/generator/vau_55876037_orig_.jpeg?5u8zq'
             }
             return {...state, postData:[...state.postData, newPost], newPostText: ''}
         }

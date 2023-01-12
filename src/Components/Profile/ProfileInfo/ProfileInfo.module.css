@@ -3,7 +3,7 @@
     height: 200px;
 }
 .description_block{
-    padding: 0px 20px 20px 20px;
+    padding:  20px;
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -16,4 +16,16 @@
 }
 .aboutUser{
 
+}
+.photoAndSocial{
+    display: flex;
+    gap: 50px;
+}
+.logo{
+    width: 50px;
+}
+.social{
+    align-items: center;
+    display: flex;
+    gap: 20px;
 }

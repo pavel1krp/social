@@ -18,7 +18,8 @@ const Post = (props:PostType) => {
         </div>
             <div className={s.likesAndComent}>
                 <p>{props.text}</p>
-        <button onClick={()=>props.likeAdd(props.postId)} className={s.likes}>{props.likesCount} likes &#10084;</button>
+                <p className={s.likes}>{props.likesCount} likes</p>
+        <button className={s.buttonLike} onClick={()=>props.likeAdd(props.postId)}>&#10084;</button>
             </div>
         </div>
    )

@@ -8,7 +8,7 @@ import {StatePropsType, UserProfileType} from "../../Types/types";
 
 export class ProfileApiContainer extends  React.Component<MapStateToPropsType & MapDispatchType>{
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/22`)
             .then(response => {
                 this.props.setUserProfileAC(response.data)
             });

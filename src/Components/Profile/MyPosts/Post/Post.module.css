@@ -22,3 +22,16 @@
 .likes{
     color: crimson;
 }
+.buttonLike{
+    width: 30px;
+    height: 30px;
+    color: red;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+.buttonLike:hover{
+    font-size: 26px;
+}

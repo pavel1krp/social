@@ -32,11 +32,13 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                                                                             alt="instagram"/></a>
                             <a href={props.profile.contacts.github}><img className={s.logo} src={github} alt="github"/></a>
                             <a href={props.profile.contacts.vk}><img className={s.logo} src={vk} alt="vk"/></a>
-                            <a href={props.profile.contacts.twitter}><img className={s.logo} src={twitter} alt="twitter"/></a>
+                            <a href={props.profile.contacts.twitter}><img className={s.logo}  src={twitter} alt="twitter"/></a>
                             <a href={props.profile.contacts.youtube}><img className={s.logo} src={youtube} alt="youtube"/></a>
                         </div>
                     </div>
-                    <p>{props.profile.aboutMe}</p>
+                    {props.profile.lookingForAJob?<p>{props.profile.lookingForAJob}</p>: null}
+                    {props.profile.lookingForAJobDescription?<p>{props.profile.lookingForAJobDescription}</p>: null}
+                    {props.profile.aboutMe?<p>{props.profile.aboutMe}</p>: null}
                 </div>
             </div>
         </div>

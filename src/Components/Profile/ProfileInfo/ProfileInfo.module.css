@@ -29,3 +29,6 @@
     display: flex;
     gap: 20px;
 }
+.notActive{
+    opacity: 0.3;
+}

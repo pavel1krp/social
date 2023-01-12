@@ -2,11 +2,6 @@ import React from 'react';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ActionType, postDatapropsType, UserProfileType} from "../../Types/types";
 import {MyPostContainer} from "./MyPosts/MyPostContainer";
-
-
-
-
-
 // export type ProfileProps ={
 //     post: PropsType[]
 // }

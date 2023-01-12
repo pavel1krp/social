@@ -7,6 +7,7 @@ import facebook from '../../../assets/icons/facebook.png'
 import twitter from '../../../assets/icons/twitter.png'
 import youtube from '../../../assets/icons/youtube.png'
 import github from '../../../assets/icons/github-mark.png'
+import {Preloader} from "../../Common/Preloader/Preloader";
 
 
 type ProfileInfoPropsType = {
@@ -15,7 +16,9 @@ type ProfileInfoPropsType = {
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
-    console.log(props.profile.contacts)
+    if (!props.profile) {
+        return <Preloader />
+    }
     return (
         <div>
             <div>
@@ -23,7 +26,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <div className={s.description_block}>
                     <div className={s.photoAndSocial}>
                         <img className={s.myAva}
-                             src={props.profile.photos.large ? props.profile.photos.small : 'https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg'}
+                             src={props.profile.photos? props.profile.photos.small : 'https://i.pinimg.com/736x/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg'}
                              alt="eto ya"/>
                         <div className={s.social}>
                             <a href={props.profile.contacts.facebook}><img className={s.logo} src={facebook}

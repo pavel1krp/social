@@ -13,7 +13,6 @@ type MyPostType ={
 
 export const MyPosts = (props:MyPostType) => {
     const posts = props.post.map(el=>{
-        console.log(props.post)
         return(
             <Post postId={el.id} likeAdd={props.likeAdd} key = {el.id} title={el.name} src={el.src} text={el.message} likesCount={el.likesCount}/>
         )

@@ -33,5 +33,6 @@
     background-color: white;
 }
 .buttonLike:hover{
-    font-size: 26px;
+    transition: .3s;
+    font-size: 24px;
 }

@@ -8,8 +8,7 @@ import Settings from "./Components/Settings/Settings";
 import News from "./Components/News/News";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./Components/Users/UsersContainer";
-import {store} from "./Redux/redux-store";
-import {ProfileContainer} from "./Components/Profile/ProfileContainer";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
 
 
 export type MessagesDataType = {
@@ -23,14 +22,13 @@ type AppPropsType = {
 
 
 const App = (props: AppPropsType) => {
-
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Nav/>
                 <div className='app-wrapper-content'>
-                    <Route render={() => <ProfileContainer />} path={'/profile'} />
+                    <Route render={() => <ProfileContainer />}  path="/profile/:userId?"/>
                     <Route render={() => <DialogsContainer />}
                            path={'/dialogs'}/>
                     <Route render={() => <News/>}

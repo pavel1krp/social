@@ -1,40 +1,54 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {postLikeAC, setUserProfileAC} from "../../Redux/profileReducer";
 import {StatePropsType, UserProfileType} from "../../Types/types";
-import {withRouter} from "react-router-dom";
-import {ReactComponent} from "*.svg";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 
+export type ProfileContainerPropsType = MapStateToPropsType & MapDispatchType
 
-export class ProfileContainer extends  React.Component<MapStateToPropsType & MapDispatchType>{
+type MapStateToPropsType = {
+    profile: UserProfileType
+}
+
+type PathParamsType ={
+    userId:string | undefined
+}
+
+type MapDispatchType = {
+    setUserProfileAC: (profile: UserProfileType) => void,
+    postLikeAC: (id: string) => void
+}
+
+type ForRouterType = RouteComponentProps<PathParamsType> & ProfileContainerPropsType
+
+class ProfileContainer extends React.Component<ForRouterType> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/22`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/10`)
             .then(response => {
                 this.props.setUserProfileAC(response.data)
             });
     }
 
     render() {
+        console.log(this.props)
         return (
-            <Profile  profile={this.props.profile} />
+            <Profile
+                {...this.props}
+                profile={this.props.profile}
+            />
         )
     }
 }
-type MapDispatchType = {
-    setUserProfileAC:(profile:any)=>void,
-}
-type MapStateToPropsType = {
-    profile:UserProfileType
-}
-export const mapStateToProps = (state:StatePropsType) => {
- return{
-     profile: state.profilePage.profile
- }
+
+export const mapStateToProps = (state: StatePropsType): MapStateToPropsType => {
+    return {
+        profile: state.profilePage.profile
+    }
 }
 
-const withUrlDataContainerComponent =  withRouter(ProfileContainer)
 
-export default  compose<React.ComponentType>(connect(mapStateToProps, {setUserProfileAC,postLikeAC})(withUrlDataContainerComponent))
+
+export default compose<FC>(connect(mapStateToProps, {setUserProfileAC, postLikeAC}), withRouter)(ProfileContainer)

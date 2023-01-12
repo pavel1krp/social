@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {ActionType, postDatapropsType, UserProfileType} from "../Types/types";
+import {ActionType, postDatapropsType, ProfilePageType, UserProfileType} from "../Types/types";
 
 export const ADD_POST = "ADD-POST"
 export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
@@ -64,7 +64,7 @@ let initialState:initialStateType = {
     }
 }
 
-export const profileReducer = (state:initialStateType = initialState, action:ActionType) =>{
+export const profileReducer = (state:initialStateType = initialState, action:ActionType):any =>{
     switch (action.type){
         case ADD_POST :{
             let newPost = {

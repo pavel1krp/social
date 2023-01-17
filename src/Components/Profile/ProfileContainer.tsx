@@ -6,6 +6,7 @@ import {postLikeAC, setUserProfileAC} from "../../Redux/profileReducer";
 import {StatePropsType, UserProfileType} from "../../Types/types";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
+import {json} from "stream/consumers";
 
 class ProfileContainer extends React.Component<AllPropsProfileContainerType>{
     componentDidMount() {
@@ -39,5 +40,4 @@ type PropsProfileContainerType= MapStateToPropsType & MapDispatchType
  }
 
  export default compose<FC>(connect(mapStateToProps, {postLikeAC,setUserProfileAC}),withRouter)(ProfileContainer)
-
 

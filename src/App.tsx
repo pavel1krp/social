@@ -9,6 +9,7 @@ import News from "./Components/News/News";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import {UsersContainer} from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
+import HeaderContainer from "./Components/Header/HeaderContainer";
 
 
 export type MessagesDataType = {
@@ -25,7 +26,7 @@ const App = (props: AppPropsType) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <Header/>
+                <HeaderContainer/>
                 <Nav/>
                 <div className='app-wrapper-content'>
                     <Route render={() => <ProfileContainer />}  path="/profile/:userId?"/>

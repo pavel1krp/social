@@ -2,6 +2,12 @@ import {MessagesDataType} from "../App";
 import {setCurrentPageACType, setTotalUserCountACType, toggleIsFetchingType} from "../Redux/usersReduser";
 import {PostLikeAcType, SetUserProfileType} from "../Redux/profileReducer";
 
+export type authDataType = {
+    userId:string
+    email: string
+    login: string
+    isAuth: boolean
+}
 
 export type UserProfileType = {
     aboutMe: string,
@@ -55,6 +61,7 @@ export type StatePropsType = {
     dialogPage: DialogPageType
     sideBar: SideBarType
     usersPage: UsersDataType
+    auth: authDataType
 }
 export type StoreType = {
     _state: StatePropsType

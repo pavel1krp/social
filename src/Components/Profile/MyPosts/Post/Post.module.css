@@ -34,5 +34,8 @@
 }
 .buttonLike:hover{
     transition: .3s;
-    font-size: 24px;
+    font-size: 20px;
+}
+.buttonLike:active{
+    font-size: 34px;
 }

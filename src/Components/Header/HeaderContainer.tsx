@@ -8,10 +8,10 @@ import {setAuthUserDataAC} from "../../Redux/auth-reducer";
 import {StatePropsType} from "../../Types/types";
 
 
-class HeaderContainer extends React.Component<PropsheaderContainerType>{
+class HeaderContainer extends React.Component<PropsHeaderContainerType>{
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials:true
+            withCredentials:true,
         })
             .then(response =>{
                 if(response.data.resultCode ===0){
@@ -25,7 +25,7 @@ class HeaderContainer extends React.Component<PropsheaderContainerType>{
         return <Header login={this.props.login} isAuth={this.props.isAuth} />
     }
 }
-type PropsheaderContainerType = MapDispatchType & MapStateToPropsType
+type PropsHeaderContainerType = MapDispatchType & MapStateToPropsType
 type  MapDispatchType = {
     setAuthUserDataAC:(id:string, email:string, login:string)=>void
 }

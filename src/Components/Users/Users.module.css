@@ -15,6 +15,7 @@
 .singleUserElement{
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 .userInfo{
     display: flex;

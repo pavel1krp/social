@@ -4,6 +4,7 @@ import style from './Users.module.css'
 import axios from 'axios';
 import smallUserAvatar from '../../assets/images/smallUsersAva.png'
 import {NavLink} from "react-router-dom";
+import {usersAPI} from "../../api";
 
 export type UserPropsType = {
     users: UsersType[]
@@ -25,13 +26,7 @@ export const Users = (props: UserPropsType) => {
     const mappedUsers = users.map(el => {
 
         const follow = () => {
-            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {}, {
-                withCredentials:true,
-                headers:{
-                    "API-KEY": '1d84894c-5c25-4929-957d-5a81bfbf3d58'
-                }
-            })
-                .then(response=>{
+            usersAPI.followUser(el.id).then(response=>{
                     if(response.data.resultCode===0){
                         toggle(el.id)
                     }

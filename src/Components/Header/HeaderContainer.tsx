@@ -1,6 +1,4 @@
 import React from "react";
-import classes from "./Header.module.css";
-import {NavLink} from "react-router-dom";
 import Header from "./Header";
 import axios from "axios";
 import {connect} from "react-redux";
@@ -12,6 +10,9 @@ class HeaderContainer extends React.Component<PropsHeaderContainerType>{
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
             withCredentials:true,
+            headers:{
+                "API-KEY": '1d84894c-5c25-4929-957d-5a81bfbf3d58'
+            }
         })
             .then(response =>{
                 if(response.data.resultCode ===0){

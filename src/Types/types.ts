@@ -106,7 +106,7 @@ export type UsersDataType = {
     totalUserCount: number
     currentPage:number
     isFetching:boolean
-    followingInProgress:boolean
+    followingInProgress:any[]
 }
 
 // export type unFollowAcType = ReturnType<typeof unFollowAC>

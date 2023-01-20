@@ -15,8 +15,8 @@ export type UserPropsType = {
     toggle: (userId: string) => void
     setUsers: (user: UsersType[]) => void
     onPageChanged: (x: number) => void
-    toggleFollowingInProgressAC:(inProgress:boolean)=>void
-    followingInProgress:boolean
+    toggleFollowingInProgressAC:(inProgress:boolean, userId:string)=>void
+    followingInProgress:any[]
 }
 
 export const Users = (props: UserPropsType) => {
@@ -30,23 +30,23 @@ export const Users = (props: UserPropsType) => {
 
         const follow = () => {
             console.log(followingInProgress)
-            toggleFollowingInProgressAC(true)
+            toggleFollowingInProgressAC(true,el.id)
             usersAPI.followUser(el.id).then(response=>{
                     if(response.data.resultCode===0){
                         toggle(el.id)
                     }
-                toggleFollowingInProgressAC(false)
+                toggleFollowingInProgressAC(false,el.id)
                 })
         }
         const unFollow = ()=>{
             debugger
             console.log(followingInProgress)
-            toggleFollowingInProgressAC(true)
+            toggleFollowingInProgressAC(true,el.id)
             usersAPI.unFollowUser(el.id).then(response=>{
                     if(response.data.resultCode===1){
                         toggle(el.id)
                     }
-                toggleFollowingInProgressAC(false)
+                toggleFollowingInProgressAC(false,el.id)
                 })
         }
 
@@ -60,10 +60,10 @@ export const Users = (props: UserPropsType) => {
                         </NavLink>
                     </div>
                     {el.followed ?
-                        <button disabled={followingInProgress} onClick={
+                        <button disabled={followingInProgress.some(id=>id === el.id)} onClick={
                             unFollow}>
                             Unfollow</button>:
-                        <button disabled={followingInProgress} onClick={
+                        <button disabled={followingInProgress.some(id=>id === el.id)} onClick={
                             follow}>
                             Follow</button>}
 

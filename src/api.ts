@@ -7,14 +7,23 @@ const UrlWithCredentials = axios.create({
         "API-KEY": '1d84894c-5c25-4929-957d-5a81bfbf3d58'
     }
 })
+const UrlWithOutCredentials = axios.create({
+    baseURL: `https://social-network.samuraijs.com/api/1.0/`,
+})
 
 export const usersAPI = {
     getUsers(currentPage: number = 1, pageSize: number = 100) {
         return UrlWithCredentials.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data)
     },
-    followUser(id:string){
+    followUser(id:string) {
+        return UrlWithCredentials.post(`follow/${id}`, {})
+    },
+    unFollowUser(id:string){
         return UrlWithCredentials.delete(`follow/${id}`,{})
+    },
+    getUsersWithOutCredentials(){
+        return UrlWithOutCredentials.get('')
     }
 }
 

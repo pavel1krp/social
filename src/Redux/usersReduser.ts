@@ -6,6 +6,7 @@ export let initialState = {
     totalUserCount: 0,
     currentPage: 1,
     isFetching:true,
+    followingInProgress: false
 }
 
 export const usersReducer = (state:UsersDataType = initialState, action:ActionType )=>{
@@ -15,6 +16,7 @@ export const usersReducer = (state:UsersDataType = initialState, action:ActionTy
         case "SET-CURRENT-PAGE":return {...state, currentPage: action.pageNumber}
         case "SET-TOTAL-USER-COUNT": return {...state, totalUserCount:action.totalCount}
         case "TOGGLE-IS-FETCHING": return {...state, isFetching:action.isFetching}
+        case 'TOGGLE-FOLLOWING-PROGRESS': return {...state, followingInProgress: action.inProgress }
         default: return state
     }
 }
@@ -22,6 +24,8 @@ export const usersReducer = (state:UsersDataType = initialState, action:ActionTy
 export type setCurrentPageACType = ReturnType<typeof setCurrentPage>
 export type setTotalUserCountACType = ReturnType<typeof setTotalUserCount>
 export type toggleIsFetchingType = ReturnType<typeof toggleIsFetching>
+export type ToggleFollowingInProgressAC = ReturnType<typeof toggleFollowingInProgressAC>
+export const toggleFollowingInProgressAC = (inProgress:boolean)=>({type:'TOGGLE-FOLLOWING-PROGRESS', inProgress} as const )
 export const toggleIsFetching = (isFetching:boolean)=>({type: 'TOGGLE-IS-FETCHING',isFetching} as const)
 export const setTotalUserCount =(totalCount:number)=>({type:"SET-TOTAL-USER-COUNT", totalCount}as const)
 export const setCurrentPage = (pageNumber:number)=>({type:"SET-CURRENT-PAGE", pageNumber} as const)

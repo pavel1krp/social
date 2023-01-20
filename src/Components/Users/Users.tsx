@@ -5,6 +5,7 @@ import axios from 'axios';
 import smallUserAvatar from '../../assets/images/smallUsersAva.png'
 import {NavLink} from "react-router-dom";
 import {usersAPI} from "../../api";
+import {toggleFollowingInProgressAC} from "../../Redux/usersReduser";
 
 export type UserPropsType = {
     users: UsersType[]
@@ -14,35 +15,38 @@ export type UserPropsType = {
     toggle: (userId: string) => void
     setUsers: (user: UsersType[]) => void
     onPageChanged: (x: number) => void
+    toggleFollowingInProgressAC:(inProgress:boolean)=>void
+    followingInProgress:boolean
 }
 
 export const Users = (props: UserPropsType) => {
-    const {users, toggle, setUsers, ...restProps} = props
+    const {users, toggle, setUsers,toggleFollowingInProgressAC,followingInProgress, ...restProps} = props
     if (users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+        usersAPI.getUsersWithOutCredentials().then(response => {
             setUsers(response.data.items)
         })
     }
     const mappedUsers = users.map(el => {
 
         const follow = () => {
+            console.log(followingInProgress)
+            toggleFollowingInProgressAC(true)
             usersAPI.followUser(el.id).then(response=>{
                     if(response.data.resultCode===0){
                         toggle(el.id)
                     }
+                toggleFollowingInProgressAC(false)
                 })
         }
         const unFollow = ()=>{
-            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`,  {
-                withCredentials:true,
-                headers:{
-                    "API-KEY": '1d84894c-5c25-4929-957d-5a81bfbf3d58'
-                }
-            })
-                .then(response=>{
+            debugger
+            console.log(followingInProgress)
+            toggleFollowingInProgressAC(true)
+            usersAPI.unFollowUser(el.id).then(response=>{
                     if(response.data.resultCode===1){
                         toggle(el.id)
                     }
+                toggleFollowingInProgressAC(false)
                 })
         }
 
@@ -56,10 +60,10 @@ export const Users = (props: UserPropsType) => {
                         </NavLink>
                     </div>
                     {el.followed ?
-                        <button onClick={
+                        <button disabled={followingInProgress} onClick={
                             unFollow}>
                             Unfollow</button>:
-                        <button onClick={
+                        <button disabled={followingInProgress} onClick={
                             follow}>
                             Follow</button>}
 

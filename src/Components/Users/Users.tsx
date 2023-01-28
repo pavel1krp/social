@@ -5,7 +5,7 @@ import axios from 'axios';
 import smallUserAvatar from '../../assets/images/smallUsersAva.png'
 import {NavLink} from "react-router-dom";
 import {usersAPI} from "../../api";
-import {toggleFollowingInProgressAC} from "../../Redux/usersReduser";
+import {followTC, toggleFollowingInProgressAC, unFollowTC} from "../../Redux/usersReduser";
 
 export type UserPropsType = {
     users: UsersType[]
@@ -17,10 +17,12 @@ export type UserPropsType = {
     onPageChanged: (x: number) => void
     toggleFollowingInProgressAC:(inProgress:boolean, userId:string)=>void
     followingInProgress:any[]
+    unFollowTC:(userId:string)=>any
+    followTC:(userId:string)=>any
 }
 
 export const Users = (props: UserPropsType) => {
-    const {users, toggle, setUsers,toggleFollowingInProgressAC,followingInProgress, ...restProps} = props
+    const {users, toggle, setUsers,toggleFollowingInProgressAC,followingInProgress, followTC,unFollowTC, ...restProps} = props
     if (users.length === 0) {
         usersAPI.getUsersWithOutCredentials().then(response => {
             setUsers(response.data.items)
@@ -29,22 +31,18 @@ export const Users = (props: UserPropsType) => {
     const mappedUsers = users.map(el => {
 
         const follow = () => {
-            toggleFollowingInProgressAC(true,el.id)
-            usersAPI.followUser(el.id).then(response=>{
-                    if(response.data.resultCode===0){
-                        toggle(el.id)
-                    }
-                toggleFollowingInProgressAC(false,el.id)
-                })
+            console.log(el.id)
+            followTC(el.id)
+            // toggleFollowingInProgressAC(true,el.id)
+            // usersAPI.followUser(el.id).then(response=>{
+            //         if(response.data.resultCode===0){
+            //             toggle(el.id)
+            //         }
+            //     toggleFollowingInProgressAC(false,el.id)
+            //     })
         }
         const unFollow = ()=>{
-            toggleFollowingInProgressAC(true,el.id)
-            usersAPI.unFollowUser(el.id).then(response=>{
-                    if(response.data.resultCode===1){
-                        toggle(el.id)
-                    }
-                toggleFollowingInProgressAC(false,el.id)
-                })
+            unFollowTC(el.id)
         }
 
         return (

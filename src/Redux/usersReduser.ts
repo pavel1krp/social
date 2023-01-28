@@ -66,3 +66,28 @@ export const getUsersTC = (currentPage: number, pageSize: number) => {
         });
     }
 }
+
+export const followTC = (userId: string) => {
+
+    return (dispatch: any) => {
+        dispatch(toggleFollowingInProgressAC(true, userId))
+        usersAPI.followUser(userId).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(toggle(userId))
+            }
+            dispatch(toggleFollowingInProgressAC(false, userId))
+        })
+    }
+}
+export const unFollowTC = (userId: string) => {
+
+    return (dispatch: any) => {
+        dispatch(toggleFollowingInProgressAC(true, userId))
+        usersAPI.unFollowUser(userId).then(response => {
+            if (response.data.resultCode === 1) {
+                dispatch(toggle(userId))
+            }
+            dispatch(toggleFollowingInProgressAC(false, userId))
+        })
+    }
+}

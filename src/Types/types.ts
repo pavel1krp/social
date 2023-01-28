@@ -1,7 +1,7 @@
 import {MessagesDataType} from "../App";
 import {
     setCurrentPageACType,
-    setTotalUserCountACType,
+    setTotalUserCountACType, setUsersType,
     ToggleFollowingInProgressAC,
     toggleIsFetchingType
 } from "../Redux/usersReduser";
@@ -125,5 +125,5 @@ export type ActionType = AddPostActionType|
     SetUsersACType|setCurrentPageACType|
     setTotalUserCountACType|toggleIsFetchingType|
     SetUserProfileType|PostLikeAcType|
-    ToggleFollowingInProgressAC
+    ToggleFollowingInProgressAC|setUsersType
 

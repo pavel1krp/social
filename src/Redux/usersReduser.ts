@@ -1,5 +1,6 @@
 import {ActionType, UsersDataType, UsersType} from "../Types/types";
 import {usersAPI} from "../api";
+import {Dispatch} from "redux";
 
 export let initialState = {
     users: [],
@@ -41,6 +42,7 @@ export type setCurrentPageACType = ReturnType<typeof setCurrentPage>
 export type setTotalUserCountACType = ReturnType<typeof setTotalUserCount>
 export type toggleIsFetchingType = ReturnType<typeof toggleIsFetching>
 export type ToggleFollowingInProgressAC = ReturnType<typeof toggleFollowingInProgressAC>
+export type setUsersType = ReturnType<typeof setUsers>
 export const toggleFollowingInProgressAC = (inProgress: boolean, userId: string) => ({
     type: 'TOGGLE-FOLLOWING-PROGRESS',
     inProgress,
@@ -55,7 +57,7 @@ export const setUsers = (users: UsersType[]) => ({type: "SET-USERS", users})
 
 export const getUsersTC = (currentPage: number, pageSize: number) => {
 
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<ActionType>) => {
 
         dispatch(toggleIsFetching(true));
 
@@ -69,7 +71,7 @@ export const getUsersTC = (currentPage: number, pageSize: number) => {
 
 export const followTC = (userId: string) => {
 
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<ActionType>) => {
         dispatch(toggleFollowingInProgressAC(true, userId))
         usersAPI.followUser(userId).then(response => {
             if (response.data.resultCode === 0) {
@@ -81,7 +83,7 @@ export const followTC = (userId: string) => {
 }
 export const unFollowTC = (userId: string) => {
 
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<ActionType>) => {
         dispatch(toggleFollowingInProgressAC(true, userId))
         usersAPI.unFollowUser(userId).then(response => {
             if (response.data.resultCode === 1) {

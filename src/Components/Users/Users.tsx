@@ -1,7 +1,6 @@
 import React from 'react';
 import {UsersType} from "../../Types/types";
 import style from './Users.module.css'
-import axios from 'axios';
 import smallUserAvatar from '../../assets/images/smallUsersAva.png'
 import {NavLink} from "react-router-dom";
 import {usersAPI} from "../../api";

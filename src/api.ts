@@ -24,6 +24,9 @@ export const usersAPI = {
     },
     getUsersWithOutCredentials(){
         return UrlWithOutCredentials.get('')
+    },
+    authMe(){
+      return  UrlWithCredentials.get('auth/me')
     }
 }
 

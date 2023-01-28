@@ -11,7 +11,6 @@ import {
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
-import {usersAPI} from "../../api";
 
 export class UsersApiComponent extends React.Component<usersAllStateType> {
 

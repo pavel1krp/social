@@ -1,5 +1,7 @@
 import {v1} from "uuid";
 import {ActionType, postDatapropsType, ProfilePageType, UserProfileType} from "../Types/types";
+import {Dispatch} from "redux";
+import axios from "axios";
 
 export const ADD_POST = "ADD-POST"
 export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
@@ -89,3 +91,13 @@ export const postLikeAC = (postId:string)=>({type:'POST-LIKE', postId}as const)
 export const setUserProfileAC =  (profile:UserProfileType)=> ({type: 'SET-USER-PROFILE', profile} as const)
 export const addPostAC = ():ActionType=> ({type:ADD_POST})
 export const updateNewPostTextAC = (newText:string):ActionType=>({type:UPDATE_NEW_POST_TEXT, newText})
+
+export const getProfileTC = (Id:string)=>{
+    return (dispatch: Dispatch<ActionType>) =>{
+        let userid = Id
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userid? userid:2}`).then(response=>
+           dispatch(setUserProfileAC(response.data))
+        )
+
+    }
+}

@@ -42,17 +42,14 @@ export type setCurrentPageACType = ReturnType<typeof setCurrentPage>
 export type setTotalUserCountACType = ReturnType<typeof setTotalUserCount>
 export type toggleIsFetchingType = ReturnType<typeof toggleIsFetching>
 export type ToggleFollowingInProgressAC = ReturnType<typeof toggleFollowingInProgressAC>
-export type setUsersType = ReturnType<typeof setUsers>
-export const toggleFollowingInProgressAC = (inProgress: boolean, userId: string) => ({
-    type: 'TOGGLE-FOLLOWING-PROGRESS',
-    inProgress,
-    userId
-} as const)
+export type SetUsersType = ReturnType<typeof setUsers>
+
+export const toggleFollowingInProgressAC = (inProgress: boolean, userId: string) => ({type: 'TOGGLE-FOLLOWING-PROGRESS', inProgress, userId} as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching} as const)
 export const setTotalUserCount = (totalCount: number) => ({type: "SET-TOTAL-USER-COUNT", totalCount} as const)
 export const setCurrentPage = (pageNumber: number) => ({type: "SET-CURRENT-PAGE", pageNumber} as const)
-export const toggle = (userId: string): ActionType => ({type: 'TOGGLE', userId})
-export const setUsers = (users: UsersType[]) => ({type: "SET-USERS", users})
+export const toggle = (userId: string): ActionType => ({type: 'TOGGLE', userId} as const)
+export const setUsers = (users: UsersType[]) => ({type: "SET-USERS", users} as const)
 
 
 export const getUsersTC = (currentPage: number, pageSize: number) => {

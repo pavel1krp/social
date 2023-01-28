@@ -1,8 +1,7 @@
 import React, {FC} from 'react';
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
-import {postLikeAC, setUserProfileAC} from "../../Redux/profileReducer";
+import {getProfileTC, postLikeAC, setUserProfileAC} from "../../Redux/profileReducer";
 import {StatePropsType, UserProfileType} from "../../Types/types";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
@@ -10,10 +9,7 @@ import {json} from "stream/consumers";
 
 class ProfileContainer extends React.Component<AllPropsProfileContainerType>{
     componentDidMount() {
-        let userid = this.props.match.params.userId
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userid? userid:2}`).then(response=>
-            this.props.setUserProfileAC(response.data)
-        )
+       this.props.getProfileTC(this.props.match.params.userId)
     }
 
     render () {
@@ -31,6 +27,7 @@ type GetFromRoutType = {
 type MapDispatchType = {
     postLikeAC:(id:string)=>void
     setUserProfileAC:(profile:UserProfileType)=>void
+    getProfileTC:(id:string)=>any
 }
 type PropsProfileContainerType= MapStateToPropsType & MapDispatchType
  const mapStateToProps =(state:StatePropsType):MapStateToPropsType=>{
@@ -39,5 +36,5 @@ type PropsProfileContainerType= MapStateToPropsType & MapDispatchType
     }
  }
 
- export default compose<FC>(connect(mapStateToProps, {postLikeAC,setUserProfileAC}),withRouter)(ProfileContainer)
+ export default compose<FC>(connect(mapStateToProps, {postLikeAC,setUserProfileAC,getProfileTC}),withRouter)(ProfileContainer)
 

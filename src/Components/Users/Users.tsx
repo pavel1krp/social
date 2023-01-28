@@ -29,7 +29,6 @@ export const Users = (props: UserPropsType) => {
     const mappedUsers = users.map(el => {
 
         const follow = () => {
-            console.log(followingInProgress)
             toggleFollowingInProgressAC(true,el.id)
             usersAPI.followUser(el.id).then(response=>{
                     if(response.data.resultCode===0){
@@ -39,8 +38,6 @@ export const Users = (props: UserPropsType) => {
                 })
         }
         const unFollow = ()=>{
-            debugger
-            console.log(followingInProgress)
             toggleFollowingInProgressAC(true,el.id)
             usersAPI.unFollowUser(el.id).then(response=>{
                     if(response.data.resultCode===1){

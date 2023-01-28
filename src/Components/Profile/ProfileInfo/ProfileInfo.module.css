@@ -6,7 +6,7 @@
     padding:  20px;
     display: flex;
     flex-direction: column;
-    width: 400px;
+    /*width: 400px;*/
 
 }
 .myAva{
@@ -30,5 +30,7 @@
     gap: 20px;
 }
 .notActive{
-    opacity: 0.3;
+    /*opacity: 0.3;*/
+    /*width: 50px;*/
+    display: none;
 }

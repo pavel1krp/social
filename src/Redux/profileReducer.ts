@@ -2,6 +2,7 @@ import {v1} from "uuid";
 import {ActionType, postDatapropsType, ProfilePageType, UserProfileType} from "../Types/types";
 import {Dispatch} from "redux";
 import axios from "axios";
+import {usersAPI} from "../api";
 
 export const ADD_POST = "ADD-POST"
 export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
@@ -74,7 +75,9 @@ export const profileReducer = (state:initialStateType = initialState, action:Act
                 message: state.newPostText,
                 name: 'LLIova',
                 likesCount: 0,
-                src: state.profile.photos.large?state.profile.photos.large: 'http://risovach.ru/thumb/upload/200s400/2014/07/generator/vau_55876037_orig_.jpeg?5u8zq'
+                src: state.profile.photos.large?
+                    state.profile.photos.large:
+                    'http://risovach.ru/thumb/upload/200s400/2014/07/generator/vau_55876037_orig_.jpeg?5u8zq'
             }
             return {...state, postData:[...state.postData, newPost], newPostText: ''}
         }
@@ -94,8 +97,9 @@ export const updateNewPostTextAC = (newText:string):ActionType=>({type:UPDATE_NE
 
 export const getProfileTC = (Id:string)=>{
     return (dispatch: Dispatch<ActionType>) =>{
-        let userid = Id
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userid? userid:2}`).then(response=>
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userid? userid:2}`)
+            usersAPI.getProfile(Id)
+            .then(response=>
            dispatch(setUserProfileAC(response.data))
         )
 

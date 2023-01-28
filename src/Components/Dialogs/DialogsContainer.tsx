@@ -8,7 +8,8 @@ import {Dispatch} from "redux";
 export const mapStateToProps = (state:StatePropsType) => {
     return {
         newMessageText: state.dialogPage.newMessageText,
-        dialogState: state.dialogPage
+        dialogState: state.dialogPage,
+        isAuth: state.auth.isAuth,
     }
 }
 const mapDispatchToProps = (dispatch:Dispatch) => {

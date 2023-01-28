@@ -4,6 +4,7 @@ import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import {MessagesDataType} from "../../App";
 import {DialogDataType} from "../../Types/types";
+import {Redirect} from "react-router-dom";
 
 
 export type allDialogTypes ={
@@ -16,6 +17,7 @@ type DialogPropsType ={
     addMessage:()=>void
     updateMessage:(newMessage:string)=>void
     newMessageText:string
+    isAuth:boolean
 }
 
 const Dialogs = (props:DialogPropsType) => {
@@ -27,6 +29,7 @@ const Dialogs = (props:DialogPropsType) => {
     const addMessageHandler = ()=>{
         props.addMessage()
     }
+    if(props.isAuth===false) return <Redirect to={"/login"}/>
     return (
         <>
         <div className ={s.content}>

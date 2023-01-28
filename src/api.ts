@@ -27,6 +27,9 @@ export const usersAPI = {
     },
     authMe(){
       return  UrlWithCredentials.get('auth/me')
+    },
+    getProfile(userid:string){
+        return UrlWithOutCredentials.get(`profile/${userid? userid:2}`)
     }
 }
 

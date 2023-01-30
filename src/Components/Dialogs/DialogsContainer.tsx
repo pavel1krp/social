@@ -12,16 +12,4 @@ export const mapStateToProps = (state:StatePropsType) => {
         isAuth: state.auth.isAuth,
     }
 }
-const mapDispatchToProps = (dispatch:Dispatch) => {
-    return {
-        addMessage:()=>{
-            dispatch(addMessageAC())
-        },
-        updateMessage:(newMessage:string)=>{
-            dispatch(updateMessageTextAC(newMessage))
-        }
-    }
-}
-
-
-export const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
+export const DialogsContainer = connect(mapStateToProps,{updateMessageTextAC,addMessageAC})(Dialogs)

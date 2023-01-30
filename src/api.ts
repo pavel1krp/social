@@ -16,24 +16,22 @@ export const usersAPI = {
         return UrlWithCredentials.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data)
     },
-    followUser(id:string) {
+    followUser(id: string) {
         return UrlWithCredentials.post(`follow/${id}`, {})
     },
-    unFollowUser(id:string){
-        return UrlWithCredentials.delete(`follow/${id}`,{})
+    unFollowUser(id: string) {
+        return UrlWithCredentials.delete(`follow/${id}`, {})
     },
-    getUsersWithOutCredentials(){
+    getUsersWithOutCredentials() {
         return UrlWithOutCredentials.get('')
     },
-    authMe(){
-      return  UrlWithCredentials.get('auth/me')
+    authMe() {
+        return UrlWithCredentials.get('auth/me')
     },
-    getProfile(userid:string){
-        return UrlWithOutCredentials.get(`profile/${userid? userid:2}`)
+    getProfile(userid: string) {
+        return UrlWithOutCredentials.get(`profile/${userid ? userid : 2}`)
     }
 }
-
-
 
 
 // export const usersAPIDelete = {

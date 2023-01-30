@@ -31,7 +31,7 @@ const App = (props: AppPropsType) => {
                 <Nav/>
                 <div className='app-wrapper-content'>
                     <Route render={() => <ProfileContainer />}  path="/profile/:userId?"/>
-                    <Route render={() => <DialogsContainer />}
+                    <Route render={() => <DialogsContainer  />}
                            path={'/dialogs'}/>
                     <Route render={() => <News/>}
                            path={'/news'}/>

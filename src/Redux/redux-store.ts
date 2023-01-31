@@ -14,7 +14,8 @@ const reducers = combineReducers({
     auth: authReducer,
 
 })
-
+type ReducersType = typeof reducers
+export type AppStateType = ReturnType<ReducersType>
 export const store = createStore(reducers, applyMiddleware(thunkMiddleWare));
 
 //@ts-ignore

@@ -1,7 +1,6 @@
 import {v1} from "uuid";
-import {ActionType, postDatapropsType, ProfilePageType, UserProfileType} from "../Types/types";
+import {ActionType, postDatapropsType, UserProfileType} from "../Types/types";
 import {Dispatch} from "redux";
-import axios from "axios";
 import {usersAPI} from "../api";
 
 export const ADD_POST = "ADD-POST"

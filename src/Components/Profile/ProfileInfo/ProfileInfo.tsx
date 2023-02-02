@@ -9,7 +9,7 @@ import youtube from '../../../assets/icons/youtube.png'
 import github from '../../../assets/icons/github-mark.png'
 import {Preloader} from "../../Common/Preloader/Preloader";
 import smallUserAvatar from '../../../assets/images/smallUsersAva.png'
-import {ProfileStatus} from "./ProfileStatus";
+import ProfileStatus from "./ProfileStatus";
 
 type ProfileInfoPropsType = {
     src: string,
@@ -46,7 +46,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                                 props.profile.contacts.vk+props.profile.contacts.twitter+props.profile.contacts.youtube? null:<p>Пользователь не оставил контактов.</p>}
                         </div>
                     </div>
-                    <ProfileStatus status={'sa'}/>
+                    <ProfileStatus />
                 </div>
             </div>
         </div>
